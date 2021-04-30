@@ -6,14 +6,13 @@ class MenuDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: Column(
-          children: <Widget>[
-             DrawerTitle(),
-            Text('sss'),
-
-
-
-          ],
-        ),
+        children: <Widget>[
+          DrawerTitle(),
+          Text('トップ'),
+          Text('カート'),
+          Text('ランキング'),
+        ],
+      ),
     );
   }
 }

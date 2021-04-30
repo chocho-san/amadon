@@ -1,3 +1,4 @@
+import 'package:amadon/pages/cart_page/cart_page.dart';
 import 'package:amadon/pages/home_page.dart';
 import 'package:amadon/theme.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,9 @@ class MyApp extends HookWidget {
       //   primaryTextTheme: TextTheme(headline6: TextStyle(color: Colors.black),
       //   ),
       // ),
+      routes: {
+        CartPage.routeName: (context) => CartPage(),
+      },
       home: HomePage(),
     );
   }

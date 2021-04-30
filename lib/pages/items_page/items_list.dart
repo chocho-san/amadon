@@ -5,10 +5,17 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class ItemsList extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: EdgeInsets.all(8),
-      itemCount: 5,
-      itemBuilder: (_, index) => ItemTile(index:index),
+    return Column(
+      children: [
+        Text('結果'),
+        Expanded(
+          child: ListView.builder(
+            padding: EdgeInsets.all(8),
+            itemCount: 5,
+            itemBuilder: (_, index) => ItemTile(index:index),
+          ),
+        ),
+      ],
     );
   }
 }
