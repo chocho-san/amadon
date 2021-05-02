@@ -22,16 +22,12 @@ class ItemApi {
       Uri.parse(requestUrl + '%E3%83%9F%E3%82%AD%E3%82%B5%E3%83%BC'),
     );
 
-    final  json = (jsonDecode(response.body) as Map).cast<String, dynamic>();
-
-    final list = (json['Items'] as List).cast<List<Map<String, dynamic>>>();
-
-    final newList = (list
-        .map((i) => (i as Map).cast<String,dynamic>()['Item'])
-        .toList()).cast<Map<String, dynamic>>();
-    //
-    // print(newList);
-
+    final list = <Map<String,dynamic>>[];
+    final json = jsonDecode(response.body) as  Map<String, dynamic>;
+    for (final mapItem in json['Items']) {
+      list.add(mapItem['Item'] as Map<String,dynamic>);
+    }
+print(list);
 
   //  map.cast<String, dynamic>()
 
