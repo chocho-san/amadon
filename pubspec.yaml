@@ -13,7 +13,7 @@ dependencies:
   freezed_annotation:
   hooks_riverpod:
   http:
-
+  intl:
 
 dev_dependencies:
   flutter_test:

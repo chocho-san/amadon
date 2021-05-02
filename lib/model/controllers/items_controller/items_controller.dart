@@ -19,10 +19,10 @@ class ItemsController extends StateNotifier<ItemsState> {
     state=state.copyWith(keyWord:word);
   }
 
-  //api取得
-  Future<void> fetch() async {
+  //api取得して、商品表示
+  Future<void> searchItems(String keyWord) async {
     state = state.copyWith(
-      // items: await read!(itemsFetcher).getItems(),
+      items: await read!(itemsFetcher).getItems(keyWord),
     );
   }
 

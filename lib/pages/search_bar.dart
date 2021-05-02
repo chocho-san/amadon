@@ -1,8 +1,12 @@
+import 'package:amadon/model/controllers/items_controller/items_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchBar extends StatelessWidget {
+class SearchBar extends HookWidget {
   @override
   Widget build(BuildContext context) {
+    final itemsNotifier=useProvider(itemsProvider.notifier);
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
@@ -14,6 +18,7 @@ class SearchBar extends StatelessWidget {
           contentPadding:  EdgeInsets.symmetric(vertical: 5),
           prefixIcon: Icon(Icons.search),
         ),
+        onFieldSubmitted: itemsNotifier.searchItems,
       ),
     );
   }

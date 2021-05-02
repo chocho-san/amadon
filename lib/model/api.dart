@@ -2,34 +2,57 @@ import 'dart:convert';
 
 import 'package:amadon/api_key.dart';
 import 'package:amadon/model/entities/item/item.dart';
-import 'package:amadon/model/entities/items/items.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:http/http.dart';
-import 'dart:convert';
+
+
+
+import 'entities/item/item.dart';
 
 final itemsFetcher = Provider((ref) => ItemApi());
 
 class ItemApi {
+
   final _client = Client();
 
   static const String requestUrl =
       'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&applicationId=$apiKey&keyword=';
 
-  // typedef JsonMap = Map<String, dynamic>;
-
-  Future<void> getItems(/*String keyword*/) async {
-    final Response response = await _client.get(
-      Uri.parse(requestUrl + '%E3%83%9F%E3%82%AD%E3%82%B5%E3%83%BC'),
+  //楽天商品検索api
+  Future<List<Item>> getItems(String keyword) async {
+    final response = await _client.get(
+      Uri.parse('$requestUrl${'${Uri.encodeComponent(keyword)}'}'),
     );
 
-    final list = <Map<String,dynamic>>[];
-    final json = jsonDecode(response.body) as  Map<String, dynamic>;
-    for (final mapItem in json['Items']) {
-      list.add(mapItem['Item'] as Map<String,dynamic>);
-    }
-print(list);
+    final json = jsonDecode(response.body) as Map<String, dynamic>;
 
-  //  map.cast<String, dynamic>()
+    final list = <Map<String,dynamic>>[];
+
+    for (final mapItem in json['Items']) {
+      final itemMap =mapItem['Item'] as Map<String, dynamic>;
+      list.add(itemMap);
+    }
+
+    final castList = list.cast<Map<String, dynamic>>();
+    final newList = castList.map((e) => Item.fromJson(e)).toList();
+
+return newList;
+
 
   }
 }
+
+
+//APIの形式
+//
+// {
+//  "Items": [
+//   {
+//    "Item": {
+//       "mediumImageUrls": [
+//            {"imageUrl": "URL1"},
+//            {"imageUrl": "URL2"},
+//            {"imageUrl": "URL3"},
+//         ],
+// 　　　　"itemName": "商品名",
+// 　　　　"itemPrice": 2500,

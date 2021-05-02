@@ -10,7 +10,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-final api=useProvider(itemsFetcher);
     return Container(
       color: const Color.fromRGBO(102, 203, 205, 1),
       child: SafeArea(
@@ -21,7 +20,7 @@ final api=useProvider(itemsFetcher);
             child: AppBar(
               title: TextButton(
                 onPressed: () {
-                //  TODO: 画面更新
+                  //  TODO: 画面更新
                 },
                 child: const Text('amadon'),
               ),
@@ -38,9 +37,8 @@ final api=useProvider(itemsFetcher);
               actions: [
                 IconButton(
                   icon: Icon(Icons.search),
-                  onPressed: (){
-                    api.getItems();
-                  // TODO:検索バー表示する
+                  onPressed: () {
+                    // TODO:検索バー表示する
                   },
                 ),
                 IconButton(
@@ -58,9 +56,7 @@ final api=useProvider(itemsFetcher);
             ),
           ),
 
-          body:
-
-          ItemsList(),
+          body: ItemsList(),
           // CartPage(),
         ),
       ),
