@@ -1,8 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:ffi';
 
-class QuantityChange extends StatelessWidget {
+import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
+import 'package:amadon/model/entities/cart_item/cart_item.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+class QuantityChange extends HookWidget {
+  const QuantityChange({
+    Key? key,
+    required this.cartItem,
+  }) : super(key: key);
+
+  final CartItem cartItem;
+
   @override
   Widget build(BuildContext context) {
+    // final cartState = useProvider(cartProvider);
+    final cartNotifier = useProvider(cartProvider.notifier);
+    // final index = cartState.cartItems.indexOf(cartItem);
     return Container(
       height: 32,
       width: 150,
@@ -14,49 +30,21 @@ class QuantityChange extends StatelessWidget {
         // crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          ClipRRect(            borderRadius: BorderRadius.horizontal(left: Radius.circular(5)),
+          QuantityChangeButton(
+            icon: Icons.remove,
+            isPlus: false,
+            onPressed: (){
+              cartNotifier.decrement(cartItem);
 
-
-            child: Container(
-              decoration:  BoxDecoration(
-                  border: Border(right: BorderSide(color: Colors.grey)),
-
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: <Color>[
-                    Color.fromRGBO(246, 247, 249, 1),
-                    Color.fromRGBO(230, 233, 236, 1),
-                  ])),
-              child: IconButton(
-                padding: EdgeInsets.all(0),
-                icon: Icon(Icons.remove),
-                onPressed: () {},
-              ),
-            ),
+            },
           ),
-          Container(
-
-            child: Text('2'),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.horizontal(right: Radius.circular(5)),
-          child: Container(
-              decoration:  BoxDecoration(
-                border: Border(left: BorderSide(color: Colors.grey)),
-                   gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: <Color>[
-                        Color.fromRGBO(246, 247, 249, 1),
-                        Color.fromRGBO(230, 233, 236, 1),
-                      ])),
-              child: IconButton(
-                padding: EdgeInsets.all(0),
-                icon: Icon(Icons.add),
-                onPressed: () {},
-              ),
-            ),
+          Text('${cartItem.quantity}'),
+          QuantityChangeButton(
+            icon: Icons.add,
+            isPlus: true,
+            onPressed: (){
+              cartNotifier.increment(cartItem);
+            },
           ),
         ],
       ),
@@ -64,11 +52,64 @@ class QuantityChange extends StatelessWidget {
   }
 }
 
-// decoration: const BoxDecoration(
+class QuantityChangeButton extends StatelessWidget {
+  const QuantityChangeButton({
+    required this.isPlus,
+    required this.icon,
+    required this.onPressed,
+  });
+
+  final bool isPlus;
+  final IconData icon;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.horizontal(
+        right: isPlus ? Radius.circular(5) : Radius.zero,
+        left: isPlus ? Radius.zero : Radius.circular(5),
+      ),
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border(
+              left: isPlus ? BorderSide(color: Colors.grey) : BorderSide.none,
+              right: isPlus ? BorderSide.none : BorderSide(color: Colors.grey),
+            ),
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: <Color>[
+                  Color.fromRGBO(246, 247, 249, 1),
+                  Color.fromRGBO(230, 233, 236, 1),
+                ])),
+        child: IconButton(
+          padding: EdgeInsets.all(0),
+          icon: Icon(icon),
+          onPressed: onPressed,
+        ),
+      ),
+    );
+  }
+}
+
+//
+// ClipRRect(
+// borderRadius: BorderRadius.horizontal(right: Radius.circular(5)),
+// child: Container(
+// decoration: BoxDecoration(
+// border: Border(left: BorderSide(color: Colors.grey),),
 // gradient: LinearGradient(
 // begin: Alignment.topCenter,
 // end: Alignment.bottomCenter,
 // colors: <Color>[
-// Color.fromRGBO(246, 247,249 , 1),
+// Color.fromRGBO(246, 247, 249, 1),
 // Color.fromRGBO(230, 233, 236, 1),
 // ])),
+// child: IconButton(
+// padding: EdgeInsets.all(0),
+// icon: Icon(Icons.add),
+// onPressed: () {},
+// ),
+// ),
+// );

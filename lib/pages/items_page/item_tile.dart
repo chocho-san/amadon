@@ -1,4 +1,4 @@
-import 'package:amadon/model/controllers/items_controller/items_controller.dart';
+import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/entities/item/item.dart';
 import 'package:amadon/pages/items_page/item_image.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +12,9 @@ class ItemTile extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartNotifier = useProvider(cartProvider.notifier);
+    final cartState = useProvider(cartProvider);
+    // print(cartState.cartItems);
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Container(
@@ -46,7 +49,9 @@ class ItemTile extends HookWidget {
                     ),
                     ElevatedButton(
                       // style: ButtonStyle(),
-                      onPressed: () {},
+                      onPressed: () {
+                        cartNotifier.addToCart(item);
+                      },
                       child: const Text('カートに入れる'),
                     ),
                   ],

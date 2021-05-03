@@ -1,14 +1,19 @@
+import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
+import 'package:amadon/model/entities/cart_item/cart_item.dart';
 import 'package:amadon/pages/cart_page/quantity_change.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CartTile extends StatelessWidget {
-  const CartTile({Key? key, this.index}) : super(key: key);
+class CartTile extends HookWidget {
+  const CartTile({Key? key, required this.cartItem, }) : super(key: key);
 
-  final int? index;
+  final CartItem cartItem;
 
 
   @override
   Widget build(BuildContext context) {
+    final cartNotifier=useProvider(cartProvider.notifier);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -16,12 +21,12 @@ class CartTile extends StatelessWidget {
         children: [
           Row(
             children: [
-              Container(
-                height: 120,
-                width: 110,
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  borderRadius: BorderRadius.horizontal(left: Radius.circular(5)),
+              SizedBox(
+                width: 120,
+                height: 110,
+                child: Image.network(
+                  cartItem.item.imageUrl,
+                  fit: BoxFit.cover,
                 ),
               ),
               const SizedBox(width: 15),
@@ -31,7 +36,7 @@ class CartTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'adsalkjgdsah;lasgdh;lasfdhsfadjk',
+                      cartItem.item.itemName,
                       style: TextStyle(
                         fontSize: 18,
                       ),
@@ -40,7 +45,7 @@ class CartTile extends StatelessWidget {
                     ),
                     SizedBox(height: 20,),
                     Text(
-                      '¥ 3,999',
+                      cartItem.item.price,
                       style: Theme.of(context).accentTextTheme.headline5,
                     ),
                   ],
@@ -53,7 +58,7 @@ class CartTile extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              QuantityChange(),
+              QuantityChange(cartItem: cartItem,),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                  side: const BorderSide(
@@ -61,13 +66,14 @@ class CartTile extends StatelessWidget {
                  ),
                   primary: Colors.white,
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  cartNotifier.delete(cartItem);
+                },
                 child: Text('削除'),
               ),
             ],
           ),
-          const Divider(
-          ),
+          const Divider(),
         ],
       ),
     );

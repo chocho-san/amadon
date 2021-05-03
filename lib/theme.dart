@@ -14,9 +14,10 @@ ThemeData buildTheme() {
     primaryTextTheme: TextTheme(
       headline6: TextStyle(color: Colors.black),
     ),
-    primaryColor: Colors.black,
+    primaryColor:       Color.fromRGBO(102, 203, 205, 1),
 
-    primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
+
+  primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
 
     accentTextTheme: const TextTheme(
       headline5: TextStyle(
@@ -108,6 +109,7 @@ ThemeData buildTheme() {
     //  indent: 15,
     //  endIndent:15 ,
     // ),
+
 
     // snackBarTheme: SnackBarThemeData(
     //     behavior: SnackBarBehavior.floating,

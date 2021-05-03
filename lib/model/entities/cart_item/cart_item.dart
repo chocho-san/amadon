@@ -15,8 +15,8 @@ abstract class CartItem implements _$CartItem {
 
   CartItem._();
 
-  CartItem increased() => copyWith(quantity: quantity + 1);
+  CartItem increment() => copyWith(quantity: quantity + 1);
 
-  CartItem decreased() => copyWith(quantity: quantity - 1);
+  CartItem decrement() => copyWith(quantity: quantity - 1);
 
 }
