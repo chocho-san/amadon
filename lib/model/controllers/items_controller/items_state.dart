@@ -7,8 +7,9 @@ part 'items_state.freezed.dart';
 abstract class ItemsState implements _$ItemsState {
   factory ItemsState({
     @Default(<Item>[]) List<Item> items,
-
     @Default('') String keyWord,
+    @Default(false) bool isLoading,
+
   }) = _ItemsState;
 
   ItemsState._();

@@ -12,59 +12,80 @@ class CartPage extends HookWidget {
     final cartState = useProvider(cartProvider);
     final cartNotifier = useProvider(cartProvider.notifier);
 
-    return Scaffold(
-      appBar: AppBar(title: Text('カート')),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: Row(
-              children: [
-                Text(
-                  cartState.numberState,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                Text(
-                  cartState.priceState,
-                  style: Theme.of(context).accentTextTheme.headline5,
+    return NestedScrollView(
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [
+                Padding(
+                  padding: const EdgeInsets.all(15),
+                  child: Row(
+                    children: [
+                      Text(
+                        cartState.numberState,
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      Text(
+                        cartState.priceState,
+                        style: Theme.of(context).accentTextTheme.headline5,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(15),
-            child: SizedBox(
-              height: 45,
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: cartNotifier.clear,
-                child: Text('購入する'),
+          SliverPersistentHeader(
+            pinned: true,
+            delegate: _CartHeaderDelegate(
+              height: 80,
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: SizedBox(
+                  height: 45,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: cartNotifier.clear,
+                    child: Text('購入する'),
+                  ),
+                ),
               ),
             ),
           ),
-          const Divider(),
-          Expanded(
-            child: CartList(),
-          ),
-        ],
+        ];
+      },
+      body: Scrollbar(
+        isAlwaysShown: false,
+        child: ListView.builder(
+          // padding: EdgeInsets.all(8),
+          itemCount: cartState.cartItems.length,
+          itemBuilder: (_, index) =>
+              CartTile(cartItem: cartState.cartItems[index]),
+        ),
       ),
     );
   }
 }
 
-class CartList extends HookWidget {
-  @override
-  Widget build(BuildContext context) {
-    final cartState = useProvider(cartProvider);
+class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
+  _CartHeaderDelegate({required this.height, required this.child});
 
-    return Scrollbar(
-      isAlwaysShown: false,
-      child: ListView.builder(
-        // padding: EdgeInsets.all(8),
-        itemCount: cartState.cartItems.length,
-        itemBuilder: (_, index) =>
-            CartTile(cartItem: cartState.cartItems[index]),
-      ),
-    );
+  final double height;
+  final Widget child;
+
+  @override
+  double get minExtent => height;
+
+  @override
+  double get maxExtent => height;
+
+  @override
+  bool shouldRebuild(covariant oldDelegate) => false;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(color: Colors.white,height: height,  child: child);
   }
 }

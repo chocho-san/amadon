@@ -8,7 +8,7 @@ final cartProvider =
 
 class CartController extends StateNotifier<CartState> {
   CartController() : super(CartState(cartItems: []));
-  //cartItems: []なんで必要なん？
+  //
 
   void addToCart(Item item) {
     if (state.cartItems.any((c) => c.item == item)) {
