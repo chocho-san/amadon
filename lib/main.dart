@@ -1,7 +1,3 @@
-
-import 'dart:convert' show utf8;
-
-import 'package:amadon/pages/cart_page/cart_page.dart';
 import 'package:amadon/pages/home_page.dart';
 import 'package:amadon/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,25 +13,11 @@ void main() => runApp(
 class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // navigatorKey: useProvider(navigatorKeyProvider),
       theme: buildTheme(),
-
-      // ThemeData(
-      //   primaryColor: Colors.black,
-      //   primaryIconTheme: IconThemeData(color: Colors.black),
-      //   primaryTextTheme: TextTheme(headline6: TextStyle(color: Colors.black),
-      //   ),
-      // ),
-      routes: {
-        CartPage.routeName: (context) => CartPage(),
-      },
       home: HomePage(),
     );
   }

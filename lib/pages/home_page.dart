@@ -3,7 +3,8 @@ import 'package:amadon/model/controllers/page_controller/page_controller.dart';
 import 'package:amadon/pages/cart_page/cart_page.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/items_page/items_list.dart';
-import 'package:amadon/pages/search_bar.dart';
+import 'package:amadon/pages/page_list.dart';
+import 'package:amadon/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -11,9 +12,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final pageState = useProvider(counterProvider);
+    final pageState = useProvider(pageProvider);
 
-    final pageNotifier = useProvider(counterProvider.notifier);
+    final pageNotifier = useProvider(pageProvider.notifier);
 
     // final page = useProvider(pageProvider);
 
@@ -69,7 +70,7 @@ class HomePage extends HookWidget {
                       ),
               ),
             ),
-            body: Pages()),
+            body: PageList()),
       ),
     );
   }

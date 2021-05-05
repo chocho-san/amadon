@@ -23,11 +23,11 @@ class CartPage extends HookWidget {
                   child: Row(
                     children: [
                       Text(
-                        cartState.numberState,
+                        cartNotifier.totalNumber(),
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       Text(
-                        cartState.priceState,
+                        cartNotifier.totalPrice(),
                         style: Theme.of(context).accentTextTheme.headline5,
                       ),
                     ],
@@ -59,9 +59,9 @@ class CartPage extends HookWidget {
         isAlwaysShown: false,
         child: ListView.builder(
           // padding: EdgeInsets.all(8),
-          itemCount: cartState.cartItems.length,
+          itemCount: cartState.length,
           itemBuilder: (_, index) =>
-              CartTile(cartItem: cartState.cartItems[index]),
+              CartTile(cartItem: cartState[index]),
         ),
       ),
     );
@@ -81,7 +81,7 @@ class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => height;
 
   @override
-  bool shouldRebuild(covariant oldDelegate) => false;
+  bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) => false;
 
   @override
   Widget build(
