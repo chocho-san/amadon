@@ -1,8 +1,5 @@
-import 'package:amadon/model/api.dart';
 import 'package:amadon/model/controllers/page_controller/page_controller.dart';
-import 'package:amadon/pages/cart_page/cart_page.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
-import 'package:amadon/pages/items_page/items_list.dart';
 import 'package:amadon/pages/page_list.dart';
 import 'package:amadon/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +12,7 @@ class HomePage extends HookWidget {
     final pageState = useProvider(pageProvider);
 
     final pageNotifier = useProvider(pageProvider.notifier);
-
+print('現在のページは、$pageState');
     // final page = useProvider(pageProvider);
 
     return Container(
@@ -23,15 +20,17 @@ class HomePage extends HookWidget {
       child: SafeArea(
         child: Scaffold(
             drawer: MenuDrawer(),
+            onDrawerChanged: (isOpen) {
+              print('開いたんか？$isOpen');
+            },
             appBar: PreferredSize(
               preferredSize: Size.fromHeight(pageState != 2 ? 140 : 70),
               child: AppBar(
                 title: TextButton(
                   onPressed: () {
                     pageNotifier.pageTrip(context,0);
-                    //  TODO: 画面更新
                   },
-                  child: Text('amadon'),
+                  child: const Text('amadon'),
                 ),
                 flexibleSpace: Container(
                   decoration: const BoxDecoration(
@@ -47,14 +46,13 @@ class HomePage extends HookWidget {
                   pageState != 2
                       ? Container()
                       : IconButton(
-                          icon: Icon(Icons.search),
+                          icon: const Icon(Icons.search),
                           onPressed: () {
                             pageNotifier.pageTrip(context,3);
-                            // TODO:検索バー表示する
                           },
                         ),
                   IconButton(
-                      icon: Icon(Icons.shopping_cart),
+                      icon: const Icon(Icons.shopping_cart),
                       onPressed: () {
                         pageNotifier.pageTrip(context,2);
                       }

@@ -9,9 +9,9 @@ class MenuDrawer extends StatelessWidget {
       child: ListView(
         children: <Widget>[
           DrawerHeaderTile(),
-          DrawerTile(0,'トップ'),
-          DrawerTile(2,'カート'),
-          DrawerTile(4,'ランキング'),
+          DrawerTile(0, 'トップ'),
+          DrawerTile(2, 'カート'),
+          DrawerTile(4, 'ランキング'),
         ],
       ),
     );

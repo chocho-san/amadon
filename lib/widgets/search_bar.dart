@@ -5,6 +5,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SearchBar extends HookWidget {
+
+  final _wordNode = useFocusNode();
+
   @override
   Widget build(BuildContext context) {
     final itemsState = useProvider(itemsProvider);
@@ -12,11 +15,13 @@ class SearchBar extends HookWidget {
     final pageNotifier = useProvider(pageProvider.notifier);
     final page = useProvider(pageProvider);
 
-    final _wordNode = useFocusNode();
     _wordNode.addListener(() {
       if (_wordNode.hasFocus) {
         print('フォーカスしてる！！！！');
         return pageNotifier.pageTrip(context, 3);
+      }else{
+        print('フォーカスしてないよ');
+
       }
     });
 
@@ -31,7 +36,8 @@ class SearchBar extends HookWidget {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
-          autofocus: page == 3,
+
+          // autofocus: page == 3,
           // initialValue: itemsState.keyWord,
           textInputAction: TextInputAction.search,
           focusNode: _wordNode,

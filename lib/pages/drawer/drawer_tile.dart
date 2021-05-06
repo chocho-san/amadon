@@ -13,7 +13,10 @@ class DrawerTile extends HookWidget {
   Widget build(BuildContext context) {
     final pageNotifier = useProvider(pageProvider.notifier);
     return InkWell(
-      onTap: () => pageNotifier.pageTrip(context, page),
+      onTap: () {
+        Navigator.pop(context);
+        pageNotifier.pageTrip(context, page);
+      },
       child: SizedBox(
         height: 60,
         child: Row(
