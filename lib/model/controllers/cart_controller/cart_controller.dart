@@ -34,6 +34,9 @@ class CartController extends StateNotifier<List<CartItem>> {
   void decrement(CartItem cartItem) {
     final index = state.indexWhere((c) => c == cartItem);
     state = state..[index] = cartItem.decrement();
+    if (state[index].quantity < 1) {
+      delete(state[index]);
+    }
   }
 
   void clear() {

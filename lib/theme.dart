@@ -4,20 +4,22 @@ ThemeData buildTheme() {
   const accentColor = Color.fromRGBO(254, 216, 19, 1);
   // const fontFamily = 'Hiragino Maru Gothic ProN';
   const appBarColor1 = Color.fromRGBO(130, 216, 227, 1);
-  const appBarColor2 =  Color.fromRGBO(165, 231, 205, 1);
+  const appBarColor2 = Color.fromRGBO(165, 231, 205, 1);
 
-  const quantityButtonColor1 = Color.fromRGBO(246, 247,249 , 1);
+  const quantityButtonColor1 = Color.fromRGBO(246, 247, 249, 1);
   const quantityButtonColor2 = Color.fromRGBO(230, 233, 236, 1);
-
 
   return ThemeData(
     primaryTextTheme: TextTheme(
       headline6: TextStyle(color: Colors.black),
+      bodyText2: TextStyle(
+        color: Color.fromRGBO(32, 32, 165, 1),
+        fontSize: 18
+      ),
     ),
-    primaryColor:       Color.fromRGBO(102, 203, 205, 1),
+    primaryColor: Color.fromRGBO(102, 203, 205, 1),
 
-
-  primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
+    primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
 
     accentTextTheme: const TextTheme(
       headline5: TextStyle(
@@ -51,22 +53,17 @@ ThemeData buildTheme() {
           horizontal: 16,
           vertical: 8,
         ),
-
-
         primary: accentColor,
         onPrimary: Colors.black,
       ),
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
-
         primary: Colors.black,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        side: const BorderSide(
-          color: Colors.grey
-        ),
+        side: const BorderSide(color: Colors.grey),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
@@ -105,11 +102,10 @@ ThemeData buildTheme() {
         color: Colors.grey, // ラベルテキストの色
       ),
     ),
-    // dividerTheme: DividerThemeData(
-    //  indent: 15,
-    //  endIndent:15 ,
-    // ),
-
+    dividerTheme: DividerThemeData(
+      thickness: 1,
+      color: Colors.black26,
+    ),
 
     // snackBarTheme: SnackBarThemeData(
     //     behavior: SnackBarBehavior.floating,

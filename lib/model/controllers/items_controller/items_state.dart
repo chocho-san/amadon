@@ -8,6 +8,7 @@ abstract class ItemsState implements _$ItemsState {
   factory ItemsState({
     @Default(<Item>[]) List<Item> items,
     @Default('') String keyWord,
+    @Default(<String>[]) List<String> searchWords,
     @Default(false) bool isLoading,
 
   }) = _ItemsState;

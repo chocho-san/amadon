@@ -24,11 +24,11 @@ class HomePage extends HookWidget {
         child: Scaffold(
             drawer: MenuDrawer(),
             appBar: PreferredSize(
-              preferredSize: Size.fromHeight( /*? 70 : */140),
+              preferredSize: Size.fromHeight(pageState != 2 ? 140 : 70),
               child: AppBar(
                 title: TextButton(
                   onPressed: () {
-                    pageNotifier.pageTrip(0);
+                    pageNotifier.pageTrip(context,0);
                     //  TODO: 画面更新
                   },
                   child: Text('amadon'),
@@ -44,25 +44,25 @@ class HomePage extends HookWidget {
                       ])),
                 ),
                 actions: [
-                  pageState == 0
+                  pageState != 2
                       ? Container()
                       : IconButton(
                           icon: Icon(Icons.search),
                           onPressed: () {
+                            pageNotifier.pageTrip(context,3);
                             // TODO:検索バー表示する
                           },
                         ),
                   IconButton(
                       icon: Icon(Icons.shopping_cart),
                       onPressed: () {
-                        pageNotifier.pageTrip(1);
+                        pageNotifier.pageTrip(context,2);
                       }
-                      // Navigator.pushNamed(context, CartPage.routeName),
                       ),
                 ],
                 //カート画面では消える
                 //しかし、サーチボタン押したら表示される。
-                bottom: pageState==1
+                bottom: pageState == 2
                     ? null
                     : PreferredSize(
                         preferredSize: const Size.fromHeight(50),

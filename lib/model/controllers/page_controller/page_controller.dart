@@ -12,11 +12,12 @@ final PageController pageController = PageController();
 class PageRoute extends StateNotifier<int> {
   PageRoute() : super(0);
 
-  void pageTrip(int index) {
-    pageController.animateToPage(
+  void pageTrip(BuildContext context,int index) {
+    if(index !=3){
+      FocusScope.of(context).unfocus();
+    }
+    pageController.jumpToPage(
       index,
-      duration: Duration(seconds: 1),
-      curve: Curves.linear,
     );
     state = index;
   }

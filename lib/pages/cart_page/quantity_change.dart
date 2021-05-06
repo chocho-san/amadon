@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/entities/cart_item/cart_item.dart';
 import 'package:flutter/material.dart';
@@ -92,24 +90,3 @@ class QuantityChangeButton extends StatelessWidget {
     );
   }
 }
-
-//
-// ClipRRect(
-// borderRadius: BorderRadius.horizontal(right: Radius.circular(5)),
-// child: Container(
-// decoration: BoxDecoration(
-// border: Border(left: BorderSide(color: Colors.grey),),
-// gradient: LinearGradient(
-// begin: Alignment.topCenter,
-// end: Alignment.bottomCenter,
-// colors: <Color>[
-// Color.fromRGBO(246, 247, 249, 1),
-// Color.fromRGBO(230, 233, 236, 1),
-// ])),
-// child: IconButton(
-// padding: EdgeInsets.all(0),
-// icon: Icon(Icons.add),
-// onPressed: () {},
-// ),
-// ),
-// );
