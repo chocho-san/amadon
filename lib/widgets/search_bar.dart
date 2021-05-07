@@ -1,11 +1,16 @@
 import 'package:amadon/model/controllers/controllers.dart';
 import 'package:amadon/model/controllers/items_controller/items_controller.dart';
+import 'package:amadon/pages/page_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchBar extends HookWidget {
 
+
+
+TextEditingController textController = TextEditingController();
+
+class SearchBar extends HookWidget {
   final _wordNode = useFocusNode();
 
   @override
@@ -19,29 +24,27 @@ class SearchBar extends HookWidget {
       if (_wordNode.hasFocus) {
         print('フォーカスしてる！！！！');
         return pageNotifier.pageTrip(context, 3);
-      }else{
+      } else {
         print('フォーカスしてないよ');
-
       }
     });
 
-    final _controller = useTextEditingController();
 
-    useEffect(() {
-      Future.microtask(
-        () => itemsNotifier.switchWord(_controller.text),
-      );
-    }, []);
+    // useEffect(() {
+    //   Future.microtask(
+    //     () => itemsNotifier.switchWord(_controller.text),
+    //   );
+    // }, []);
+
 
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
-
-          // autofocus: page == 3,
+          autofocus: page == 3,
           // initialValue: itemsState.keyWord,
           textInputAction: TextInputAction.search,
           focusNode: _wordNode,
-          controller: _controller,
+          controller: textController,
           decoration: const InputDecoration(
             hintText: '何をお探しですか？',
             contentPadding: EdgeInsets.symmetric(vertical: 5),

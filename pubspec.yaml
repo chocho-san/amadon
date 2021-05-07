@@ -15,7 +15,7 @@ dependencies:
   http:
   intl:
   flutter_slidable:
-
+  flutter_svg:
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -26,3 +26,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/svgs/

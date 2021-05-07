@@ -47,7 +47,10 @@ class CartPage extends HookWidget {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: cartNotifier.clear,
-                    child: Text('購入する'),
+                    child: const Text(
+                      '購入する',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
               ),
@@ -60,8 +63,7 @@ class CartPage extends HookWidget {
         child: ListView.builder(
           // padding: EdgeInsets.all(8),
           itemCount: cartState.length,
-          itemBuilder: (_, index) =>
-              CartTile(cartItem: cartState[index]),
+          itemBuilder: (_, index) => CartTile(cartItem: cartState[index]),
         ),
       ),
     );
@@ -86,6 +88,6 @@ class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(color: Colors.white,height: height,  child: child);
+    return SizedBox(height: height, child: child);
   }
 }

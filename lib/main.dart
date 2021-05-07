@@ -16,6 +16,7 @@ class MyApp extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'amadon',
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       home: HomePage(),
