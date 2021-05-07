@@ -13,6 +13,9 @@ part 'item.g.dart';
     required String itemName,
     required int itemPrice,
     required List<Map<String,String>> mediumImageUrls,
+    required int reviewCount,
+    required double reviewAverage,
+
   }) = _Item;
 
   Item._();

@@ -1,20 +1,19 @@
 import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/entities/item/item.dart';
 import 'package:amadon/pages/items_page/item_image.dart';
+import 'package:amadon/pages/items_page/star_rating.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class ItemTile extends HookWidget {
   const ItemTile({Key? key, required this.item}) : super(key: key);
-
   final Item item;
 
   @override
   Widget build(BuildContext context) {
     final cartNotifier = useProvider(cartProvider.notifier);
-    final cartState = useProvider(cartProvider);
-    // print(cartState.cartItems);
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: Container(
@@ -25,13 +24,16 @@ class ItemTile extends HookWidget {
         height: 180,
         child: Row(
           children: [
-            ItemImage(imageUrl: item.imageUrl,),
+            ItemImage(
+              imageUrl: item.imageUrl,
+            ),
             const SizedBox(width: 10),
             Flexible(
               child: Padding(
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
                       item.itemName,
@@ -41,18 +43,19 @@ class ItemTile extends HookWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
+                    StarRating(item.reviewAverage, item.reviewCount),
                     Text(
                       item.price,
-                      style: const TextStyle(
-                        fontSize: 22,
-                      ),
+                      style: Theme.of(context).textTheme.headline5,
                     ),
-                    ElevatedButton(
-                      // style: ButtonStyle(),
-                      onPressed: () {
-                        cartNotifier.addToCart(item);
-                      },
-                      child: const Text('カートに入れる'),
+                    Center(
+                      child: ElevatedButton(
+                        // style: ButtonStyle(),
+                        onPressed: () {
+                          cartNotifier.addToCart(item);
+                        },
+                        child: const Text('カートに入れる'),
+                      ),
                     ),
                   ],
                 ),

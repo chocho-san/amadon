@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 ThemeData buildTheme() {
-  const accentColor = Color.fromRGBO(254, 216, 19, 1);
   // const fontFamily = 'Hiragino Maru Gothic ProN';
   const appBarColor1 = Color.fromRGBO(130, 216, 227, 1);
   const appBarColor2 = Color.fromRGBO(165, 231, 205, 1);
@@ -9,13 +8,18 @@ ThemeData buildTheme() {
   const quantityButtonColor1 = Color.fromRGBO(246, 247, 249, 1);
   const quantityButtonColor2 = Color.fromRGBO(230, 233, 236, 1);
 
+  const accentColor = Color.fromRGBO(254, 216, 19, 1);
+
+  const starColor1 = Color.fromRGBO(255, 164, 28, 1);
+  const starColor2 = Color.fromRGBO(228, 121, 16, 1);
+
+  const priceColor = Color.fromRGBO(184, 59, 30, 1);
+
   return ThemeData(
-    primaryTextTheme: TextTheme(
+    primaryTextTheme: const TextTheme(
+
       headline6: TextStyle(color: Colors.black),
-      bodyText2: TextStyle(
-        color: Color.fromRGBO(32, 32, 165, 1),
-        fontSize: 18
-      ),
+      bodyText2: TextStyle(color: Color.fromRGBO(32, 32, 165, 1), fontSize: 18),
     ),
     primaryColor: Color.fromRGBO(102, 203, 205, 1),
 
@@ -30,6 +34,11 @@ ThemeData buildTheme() {
       headline4: TextStyle(
         color: Colors.black87,
         fontWeight: FontWeight.bold,
+      ),
+      // priceのテーマ
+      headline5: TextStyle(
+        fontSize: 22,
+        color: priceColor,
       ),
     ),
 

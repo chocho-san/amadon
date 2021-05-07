@@ -15,7 +15,7 @@ class SearchBar extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final itemsState = useProvider(itemsProvider);
+    // final itemsState = useProvider(itemsProvider);
     final itemsNotifier = useProvider(itemsProvider.notifier);
     final pageNotifier = useProvider(pageProvider.notifier);
     final page = useProvider(pageProvider);
@@ -28,15 +28,11 @@ class SearchBar extends HookWidget {
         print('フォーカスしてないよ');
       }
     });
-
-
     // useEffect(() {
     //   Future.microtask(
     //     () => itemsNotifier.switchWord(_controller.text),
     //   );
     // }, []);
-
-
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
