@@ -1,3 +1,4 @@
+import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/controllers/page_controller/page_controller.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
@@ -12,6 +13,7 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageState = useProvider(pageProvider);
+    final cartNotifier=useProvider(cartProvider.notifier);
 
     final pageNotifier = useProvider(pageProvider.notifier);
     print('現在のページは、$pageState');
@@ -56,6 +58,8 @@ class HomePage extends HookWidget {
                       ),
                 IconButton(
                     icon: const Icon(Icons.shopping_cart),
+                    iconSize: 30,
+
                     onPressed: () {
                       pageNotifier.pageTrip(
                           /*_scaffold.currentContext!*/

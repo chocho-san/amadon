@@ -21,7 +21,7 @@ ThemeData buildTheme() {
       headline6: TextStyle(color: Colors.black),
       bodyText2: TextStyle(color: Color.fromRGBO(32, 32, 165, 1), fontSize: 18),
     ),
-    primaryColor: Color.fromRGBO(102, 203, 205, 1),
+    primaryColor: const Color.fromRGBO(102, 203, 205, 1),
 
     primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
 
@@ -77,7 +77,7 @@ ThemeData buildTheme() {
     ),
     textButtonTheme: TextButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        textStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
         // padding: const EdgeInsets.symmetric(
         //   horizontal: 16,
         //   vertical: 8,
@@ -111,7 +111,7 @@ ThemeData buildTheme() {
         color: Colors.grey, // ラベルテキストの色
       ),
     ),
-    dividerTheme: DividerThemeData(
+    dividerTheme: const DividerThemeData(
       thickness: 1,
       color: Colors.black26,
     ),

@@ -1,5 +1,6 @@
 import 'package:amadon/model/controllers/controllers.dart';
 import 'package:amadon/model/controllers/items_controller/items_controller.dart';
+import 'package:amadon/model/controllers/text_controller.dart';
 import 'package:amadon/pages/page_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -8,17 +9,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
 
-TextEditingController textController = TextEditingController();
-
 class SearchBar extends HookWidget {
-  final _wordNode = useFocusNode();
-
   @override
   Widget build(BuildContext context) {
-    // final itemsState = useProvider(itemsProvider);
+
+    final textState = useProvider(textProvider);
+
+
     final itemsNotifier = useProvider(itemsProvider.notifier);
     final pageNotifier = useProvider(pageProvider.notifier);
     final page = useProvider(pageProvider);
+    final _wordNode = useFocusNode();
 
     _wordNode.addListener(() {
       if (_wordNode.hasFocus) {
@@ -40,7 +41,7 @@ class SearchBar extends HookWidget {
           // initialValue: itemsState.keyWord,
           textInputAction: TextInputAction.search,
           focusNode: _wordNode,
-          controller: textController,
+          controller: textState,
           decoration: const InputDecoration(
             hintText: '何をお探しですか？',
             contentPadding: EdgeInsets.symmetric(vertical: 5),
@@ -54,3 +55,4 @@ class SearchBar extends HookWidget {
     );
   }
 }
+

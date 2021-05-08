@@ -11,7 +11,7 @@ class ItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.horizontal(left: Radius.circular(5)),
+      borderRadius: const BorderRadius.horizontal(left: Radius.circular(5)),
       child: SizedBox(
         width: 130,
         height: 180,

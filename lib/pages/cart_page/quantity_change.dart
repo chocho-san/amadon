@@ -31,16 +31,15 @@ class QuantityChange extends HookWidget {
           QuantityChangeButton(
             icon: Icons.remove,
             isPlus: false,
-            onPressed: (){
+            onPressed: () {
               cartNotifier.decrement(cartItem);
-
             },
           ),
           Text('${cartItem.quantity}'),
           QuantityChangeButton(
             icon: Icons.add,
             isPlus: true,
-            onPressed: (){
+            onPressed: () {
               cartNotifier.increment(cartItem);
             },
           ),
@@ -65,14 +64,18 @@ class QuantityChangeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.horizontal(
-        right: isPlus ? Radius.circular(5) : Radius.zero,
-        left: isPlus ? Radius.zero : Radius.circular(5),
+        right: isPlus ? const Radius.circular(5) : Radius.zero,
+        left: isPlus ? Radius.zero : const Radius.circular(5),
       ),
       child: Container(
         decoration: BoxDecoration(
             border: Border(
-              left: isPlus ? BorderSide(color: Colors.grey) : BorderSide.none,
-              right: isPlus ? BorderSide.none : BorderSide(color: Colors.grey),
+              left: isPlus
+                  ? const BorderSide(color: Colors.grey)
+                  : BorderSide.none,
+              right: isPlus
+                  ? BorderSide.none
+                  : const BorderSide(color: Colors.grey),
             ),
             gradient: const LinearGradient(
                 begin: Alignment.topCenter,
@@ -82,7 +85,7 @@ class QuantityChangeButton extends StatelessWidget {
                   Color.fromRGBO(230, 233, 236, 1),
                 ])),
         child: IconButton(
-          padding: EdgeInsets.all(0),
+          padding: const EdgeInsets.all(0),
           icon: Icon(icon),
           onPressed: onPressed,
         ),

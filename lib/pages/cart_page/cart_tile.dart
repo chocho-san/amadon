@@ -57,13 +57,13 @@ class CartTile extends HookWidget {
                     children: [
                       Text(
                         cartItem.item.itemName,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 3,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Text(
@@ -90,7 +90,7 @@ class CartTile extends HookWidget {
                   onPressed: () {
                     cartNotifier.delete(cartItem);
                   },
-                  child: Text('削除'),
+                  child: const Text('削除'),
                 ),
               ],
             ),

@@ -18,34 +18,38 @@ class ItemApi {
 
   //楽天商品検索api
   Future<List<Item>> getItems(String keyword) async {
-
     // def aaa = Map<String, dynamic>;
 
     final response = await _client.get(
       Uri.parse('$requestUrl${'${Uri.encodeComponent(keyword)}'}'),
     );
 
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
+    switch (response.statusCode) {
+      case 200:
+        final json = jsonDecode(response.body) as Map<String, dynamic>;
 
-      final list = <Map<String, dynamic>>[];
+        final list = <Map<String, dynamic>>[];
 
-      for (final mapItem in json['Items']) {
-        final itemMap = mapItem['Item'] as Map<String, dynamic>;
-        list.add(itemMap);
-      }
+        for (final mapItem in json['Items']) {
+          final itemMap = mapItem['Item'] as Map<String, dynamic>;
+          list.add(itemMap);
+        }
 
-      final castList = list.cast<Map<String, dynamic>>();
-      final newList = castList.map((e) => Item.fromJson(e)).toList();
+        final castList = list.cast<Map<String, dynamic>>();
+        final newList = castList.map((e) => Item.fromJson(e)).toList();
 
-      return newList;
+        return newList;
 
-    } else {
-      throw Exception('取得失敗');
+      case 400:
+        throw Exception('2文字以上入力してください');
+
+      case 404:
+        throw Exception('対象のデータが存在しません');
+      case 429:
+        throw Exception('しばらく時間を空けてからご利用ください');
+      default:
+        return [];
     }
-
-
-
   }
 }
 

@@ -1,6 +1,5 @@
-import 'package:amadon/model/controllers/cart_controller/cart_state.dart';
-import 'package:amadon/model/entities/item/item.dart';
-import 'package:amadon/model/entities/cart_item/cart_item.dart';
+
+import 'package:amadon/model/model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
@@ -42,6 +41,7 @@ class CartController extends StateNotifier<List<CartItem>> {
   void clear() {
     state = state..clear();
   }
+
 
   String totalNumber() {
     final number = state.fold<int>(0, (count, ci) => count + ci.quantity);
