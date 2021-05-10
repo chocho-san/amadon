@@ -9,16 +9,19 @@ class CartButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageNotifier = useProvider(pageProvider.notifier);
-    final String total = useProvider(cartProvider).totalNumber.toString();
+    final  total = useProvider(cartProvider).totalNumber.toString();
     return Badge(
-      position: BadgePosition.topEnd(top: 0, end: 3),
+      position: BadgePosition.topEnd(top: 1, end: 13),
       animationDuration: const Duration(milliseconds: 400),
       animationType: BadgeAnimationType.scale,
-      badgeColor: Colors.black,
+      badgeColor: Color.fromRGBO(165, 231, 205, 1),
+      shape: BadgeShape.square,
+      padding: EdgeInsets.all(0),
+      elevation: 0,
       badgeContent: Text(
         total,
-        style: TextStyle(
-            color: Color.fromRGBO(165, 231, 205, 1),
+        style: const TextStyle(
+            color: Colors.black,
             fontWeight: FontWeight.bold),
       ),
       child: IconButton(
