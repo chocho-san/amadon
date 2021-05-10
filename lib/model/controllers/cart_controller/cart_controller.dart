@@ -1,56 +1,54 @@
-
+import 'package:amadon/model/controllers/cart_controller/cart_state.dart';
 import 'package:amadon/model/model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 
-final cartProvider = StateNotifierProvider<CartController, List<CartItem>>(
+final cartProvider = StateNotifierProvider<CartController, CartState>(
     (ref) => CartController());
 
-class CartController extends StateNotifier<List<CartItem>> {
-  CartController() : super(<CartItem>[]);
+class CartController extends StateNotifier<CartState> {
+  CartController() : super(CartState(cartItems: []));
 
   void addToCart(Item item) {
-    if (state.any((c) => c.item == item)) {
+    if (state.cartItems.any((c) => c.item == item)) {
       //すでにカートにあるなら
-      final cartItem = state.firstWhere((c) => c.item == item);
+      final cartItem = state.cartItems.firstWhere((c) => c.item == item);
       increment(cartItem);
     } else {
       //カートに初めて入れるなら
       final ci = CartItem(item: item, quantity: 1);
-      state = state..add(ci);
+      state = state.copyWith(
+        cartItems:state.cartItems..add(ci),
+      );
     }
   }
 
   void delete(CartItem cartItem) {
-    state = state..remove(cartItem);
+    state = state.copyWith(
+      cartItems:state.cartItems..remove(cartItem),
+    );
   }
 
   void increment(CartItem cartItem) {
-    final index = state.indexWhere((c) => c == cartItem);
-    state = state..[index] = cartItem.increment();
+    final index = state.cartItems.indexWhere((c) => c == cartItem);
+    state = state.copyWith(
+      cartItems:state.cartItems..[index] = cartItem.increment(),
+    );
   }
 
   void decrement(CartItem cartItem) {
-    final index = state.indexWhere((c) => c == cartItem);
-    state = state..[index] = cartItem.decrement();
-    if (state[index].quantity < 1) {
-      delete(state[index]);
+    final index = state.cartItems.indexWhere((c) => c == cartItem);
+    state = state.copyWith(
+      cartItems:state.cartItems..[index] = cartItem.decrement(),
+    );
+    if (state.cartItems[index].quantity < 1) {
+      delete(state.cartItems[index]);
     }
   }
 
   void clear() {
-    state = state..clear();
-  }
-
-
-  String totalNumber() {
-    final number = state.fold<int>(0, (count, ci) => count + ci.quantity);
-    return '小計($number個の商品)(税込)：';
-  }
-
-  String totalPrice() {
-    final price = state.fold<int>(
-        0, (count, ci) => count + ci.item.itemPrice * ci.quantity);
-    return '¥${NumberFormat('#,##0').format(price)}';
+    state = state.copyWith(
+      cartItems:state.cartItems..clear(),
+    );
   }
 }

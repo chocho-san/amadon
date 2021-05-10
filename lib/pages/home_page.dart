@@ -2,6 +2,7 @@ import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/controllers/page_controller/page_controller.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
+import 'package:amadon/widgets/cart_button.dart';
 import 'package:amadon/widgets/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -13,7 +14,6 @@ class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageState = useProvider(pageProvider);
-    final cartNotifier=useProvider(cartProvider.notifier);
 
     final pageNotifier = useProvider(pageProvider.notifier);
     print('現在のページは、$pageState');
@@ -56,16 +56,7 @@ class HomePage extends HookWidget {
                           pageNotifier.pageTrip(context, 3);
                         },
                       ),
-                IconButton(
-                    icon: const Icon(Icons.shopping_cart),
-                    iconSize: 30,
-
-                    onPressed: () {
-                      pageNotifier.pageTrip(
-                          /*_scaffold.currentContext!*/
-                          context,
-                          2);
-                    }),
+                CartButton(),
               ],
               //カート画面では消える
               //しかし、サーチボタン押したら表示される。

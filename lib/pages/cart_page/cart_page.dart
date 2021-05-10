@@ -5,8 +5,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class CartPage extends HookWidget {
-  static const routeName = '/cart';
-
   @override
   Widget build(BuildContext context) {
     final cartState = useProvider(cartProvider);
@@ -23,11 +21,11 @@ class CartPage extends HookWidget {
                   child: Row(
                     children: [
                       Text(
-                        cartNotifier.totalNumber(),
+                        cartState.numberState,
                         style: Theme.of(context).textTheme.headline6,
                       ),
                       Text(
-                        cartNotifier.totalPrice(),
+                        cartState.priceState,
                         style: Theme.of(context).accentTextTheme.headline5,
                       ),
                     ],
@@ -62,8 +60,9 @@ class CartPage extends HookWidget {
         isAlwaysShown: false,
         child: ListView.builder(
           // padding: EdgeInsets.all(8),
-          itemCount: cartState.length,
-          itemBuilder: (_, index) => CartTile(cartItem: cartState[index]),
+          itemCount: cartState.cartItems.length,
+          itemBuilder: (_, index) =>
+              CartTile(cartItem: cartState.cartItems[index]),
         ),
       ),
     );

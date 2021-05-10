@@ -7,7 +7,7 @@ class TopPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SvgPicture.asset('assets/svgs/shopping_1.svg'),
+      child: SvgPicture.asset('assets/svgs/shopping.svg'),
     );
   }
 }
