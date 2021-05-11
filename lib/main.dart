@@ -18,7 +18,7 @@ class MyApp extends HookWidget {
     return MaterialApp(
       title: 'amadon',
       debugShowCheckedModeBanner: false,
-      theme: buildTheme(),
+      theme: BuildTheme.themeData(),
       home: HomePage(),
     );
   }

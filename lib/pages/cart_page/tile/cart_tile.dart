@@ -1,7 +1,8 @@
-import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
-import 'package:amadon/model/entities/cart_item/cart_item.dart';
-import 'package:amadon/pages/cart_page/tile/quantity_change.dart';
 import 'package:flutter/material.dart';
+import 'package:amadon/model/model.dart';
+import 'package:amadon/pages/cart_page/tile/cart_tile_info.dart';
+import 'package:amadon/pages/cart_page/tile/delete_button.dart';
+import 'package:amadon/pages/cart_page/tile/quantity_change.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -25,7 +26,10 @@ class CartTile extends HookWidget {
         SlideAction(
           color: Colors.red,
           onTap: () => cartNotifier.delete(cartItem),
-          child: const Text('削除',style: TextStyle(color: Colors.white),),
+          child: const Text(
+            '削除',
+            style: TextStyle(color: Colors.white),
+          ),
         ),
       ],
       secondaryActions: <Widget>[
@@ -40,41 +44,7 @@ class CartTile extends HookWidget {
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 120,
-                  height: 110,
-                  child: Image.network(
-                    cartItem.item.imageUrl,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                const SizedBox(width: 15),
-                Flexible(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        cartItem.item.itemName,
-                        style: const TextStyle(
-                          fontSize: 18,
-                        ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 3,
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        cartItem.item.price,
-                        style: Theme.of(context).accentTextTheme.headline5,
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+           CartTileInfo(cartItem),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -82,16 +52,7 @@ class CartTile extends HookWidget {
                 QuantityChange(
                   cartItem: cartItem,
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    side: const BorderSide(color: Colors.grey),
-                    primary: Colors.white,
-                  ),
-                  onPressed: () {
-                    cartNotifier.delete(cartItem);
-                  },
-                  child: const Text('削除'),
-                ),
+                DeleteButton(cartItem),
               ],
             ),
             const Divider(),

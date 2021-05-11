@@ -1,5 +1,5 @@
 import 'package:amadon/model/model.dart';
-import 'package:amadon/pages/page_list.dart';
+import 'package:amadon/theme.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -9,30 +9,27 @@ class CartButton extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageNotifier = useProvider(pageProvider.notifier);
-    final  total = useProvider(cartProvider).totalNumber.toString();
+    final total = useProvider(cartProvider).totalNumber.toString();
     return Badge(
-      position: BadgePosition.topEnd(top: 1, end: 13),
-      animationDuration: const Duration(milliseconds: 400),
+      position: BadgePosition.topEnd(top: 1, end: 15),
+      animationDuration: const Duration(milliseconds: 50),
       animationType: BadgeAnimationType.scale,
-      badgeColor: Color.fromRGBO(165, 231, 205, 1),
+      badgeColor: BuildTheme.appBarColor2,
       shape: BadgeShape.square,
-      padding: EdgeInsets.all(0),
+      padding: const EdgeInsets.all(0),
       elevation: 0,
       badgeContent: Text(
         total,
         style: const TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold),
+          color: Colors.black,
+          fontWeight: FontWeight.bold,
+        ),
       ),
       child: IconButton(
-          icon: const Icon(Icons.shopping_cart),
-          iconSize: 30,
-          onPressed: () {
-            pageNotifier.pageTrip(
-                /*_scaffold.currentContext!*/
-                context,
-                2);
-          }),
+        icon: const Icon(Icons.shopping_cart),
+        iconSize: 30,
+        onPressed: () => pageNotifier.pageTrip(context, 2),
+      ),
     );
   }
 }

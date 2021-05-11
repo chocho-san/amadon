@@ -1,3 +1,4 @@
+import 'package:amadon/theme.dart';
 import 'package:flutter/material.dart';
 
 class StarRating extends StatelessWidget {
@@ -8,7 +9,7 @@ class StarRating extends StatelessWidget {
 
   Widget buildStar(BuildContext context, int index) {
     IconData iconData;
-    const color = Color.fromRGBO(255, 164, 28, 1);
+    const color = BuildTheme.starColor;
     if (index >= rating) {
       iconData = Icons.star_border;
     } else if (index > rating - 1 && index < rating) {
