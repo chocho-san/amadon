@@ -1,5 +1,6 @@
 import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
-import 'package:amadon/pages/cart_page/cart_tile.dart';
+import 'package:amadon/pages/cart_page/order_button.dart';
+import 'package:amadon/pages/cart_page/tile/cart_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -8,8 +9,6 @@ class CartPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final cartState = useProvider(cartProvider);
-    final cartNotifier = useProvider(cartProvider.notifier);
-
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
@@ -40,17 +39,7 @@ class CartPage extends HookWidget {
               height: 80,
               child: Padding(
                 padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  height: 45,
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    onPressed: cartNotifier.clear,
-                    child: const Text(
-                      '購入する',
-                      style: TextStyle(fontSize: 18),
-                    ),
-                  ),
-                ),
+                child: OrderButton(),
               ),
             ),
           ),
@@ -68,6 +57,7 @@ class CartPage extends HookWidget {
     );
   }
 }
+
 
 class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   _CartHeaderDelegate({required this.height, required this.child});
@@ -87,6 +77,9 @@ class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox(height: height, child: child);
+    return Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        height: height,
+        child: child);
   }
 }

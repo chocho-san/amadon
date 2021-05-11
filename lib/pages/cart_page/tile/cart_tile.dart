@@ -1,6 +1,6 @@
 import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/entities/cart_item/cart_item.dart';
-import 'package:amadon/pages/cart_page/quantity_change.dart';
+import 'package:amadon/pages/cart_page/tile/quantity_change.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';

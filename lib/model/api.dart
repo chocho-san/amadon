@@ -14,7 +14,8 @@ class ItemApi {
   static const String apiKey = '1060774995987489267';
 
   static const String requestUrl =
-      'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&applicationId=$apiKey&keyword=';
+      'https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?format=json&'
+      'applicationId=$apiKey&keyword=';
 
   //楽天商品検索api
   Future<List<Item>> getItems(String keyword) async {

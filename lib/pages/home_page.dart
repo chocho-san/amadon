@@ -1,5 +1,4 @@
-import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
-import 'package:amadon/model/controllers/page_controller/page_controller.dart';
+import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
 import 'package:amadon/widgets/cart_button.dart';
@@ -9,16 +8,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookWidget {
-  // final GlobalKey _scaffold = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
-    final pageState = useProvider(pageProvider);
-
+    final isCartPage = context.read(currentPageProvider).state == 2;
     final pageNotifier = useProvider(pageProvider.notifier);
-    print('現在のページは、$pageState');
-    // final page = useProvider(pageProvider);
-
     return Container(
       color: const Color.fromRGBO(102, 203, 205, 1),
       child: SafeArea(
@@ -29,7 +22,7 @@ class HomePage extends HookWidget {
             print('開いたんか？$isOpen');
           },
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(pageState != 2 ? 140 : 70),
+            preferredSize: Size.fromHeight(!isCartPage ? 140 : 70),
             child: AppBar(
               title: TextButton(
                 onPressed: () {
@@ -48,7 +41,7 @@ class HomePage extends HookWidget {
                     ])),
               ),
               actions: [
-                pageState != 2
+                !isCartPage
                     ? Container()
                     : IconButton(
                         icon: const Icon(Icons.search),
@@ -60,7 +53,7 @@ class HomePage extends HookWidget {
               ],
               //カート画面では消える
               //しかし、サーチボタン押したら表示される。
-              bottom: pageState != 2
+              bottom: !isCartPage
                   ? PreferredSize(
                       preferredSize: const Size.fromHeight(50),
                       child: SearchBar(),

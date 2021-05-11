@@ -1,5 +1,5 @@
-import 'package:amadon/pages/drawer/drawer_header_tile.dart';
-import 'package:amadon/pages/drawer/drawer_tile.dart';
+import 'package:amadon/pages/drawer/tile/drawer_header_tile.dart';
+import 'package:amadon/pages/drawer/tile/drawer_tile.dart';
 import 'package:flutter/material.dart';
 
 class MenuDrawer extends StatelessWidget {

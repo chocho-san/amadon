@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final textProvider =
-    StateNotifierProvider<TextController, TextEditingController>(
-        (_) => TextController());
+final searchProvider =
+    StateNotifierProvider<SearchController, TextEditingController>(
+        (_) => SearchController());
 
-class TextController extends StateNotifier<TextEditingController> {
-  TextController() : super(TextEditingController());
+class SearchController extends StateNotifier<TextEditingController> {
+  SearchController() : super(TextEditingController());
 
   void addWord(String word) {
     state.text = word;

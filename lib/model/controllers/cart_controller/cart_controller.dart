@@ -1,7 +1,6 @@
 import 'package:amadon/model/controllers/cart_controller/cart_state.dart';
 import 'package:amadon/model/model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:intl/intl.dart';
 
 final cartProvider = StateNotifierProvider<CartController, CartState>(
     (ref) => CartController());

@@ -1,7 +1,7 @@
 import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
 import 'package:amadon/model/entities/item/item.dart';
-import 'package:amadon/pages/items_page/item_image.dart';
-import 'package:amadon/pages/items_page/star_rating.dart';
+import 'package:amadon/pages/items_page/tile/item_image.dart';
+import 'package:amadon/pages/items_page/tile/star_rating.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';

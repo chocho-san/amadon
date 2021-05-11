@@ -1,21 +1,12 @@
 import 'package:amadon/model/controllers/controllers.dart';
-import 'package:amadon/model/controllers/items_controller/items_controller.dart';
-import 'package:amadon/model/controllers/text_controller.dart';
-import 'package:amadon/pages/page_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
-
-
 class SearchBar extends HookWidget {
   @override
   Widget build(BuildContext context) {
-
-    final textState = useProvider(textProvider);
-
-
+    final textState = useProvider(searchProvider);
     final itemsNotifier = useProvider(itemsProvider.notifier);
     final pageNotifier = useProvider(pageProvider.notifier);
     final page = useProvider(pageProvider);
@@ -29,11 +20,7 @@ class SearchBar extends HookWidget {
         print('フォーカスしてないよ');
       }
     });
-    // useEffect(() {
-    //   Future.microtask(
-    //     () => itemsNotifier.switchWord(_controller.text),
-    //   );
-    // }, []);
+
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(
