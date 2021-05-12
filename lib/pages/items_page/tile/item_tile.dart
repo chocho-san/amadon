@@ -43,7 +43,7 @@ class ItemTile extends HookWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
-                    StarRating(item.reviewAverage, item.reviewCount),
+                    StarRating(item.reviewAverage, item.totalReview),
                     Text(
                       item.price,
                       style: Theme.of(context).textTheme.headline5,

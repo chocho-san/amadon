@@ -9,8 +9,10 @@ class SearchController extends StateNotifier<TextEditingController> {
   SearchController() : super(TextEditingController());
 
   void addWord(String word) {
-    state.text = word;
-    state.selection =
-        TextSelection.fromPosition(TextPosition(offset: state.text.length));
+    state
+      ..text = word
+      ..selection = TextSelection.fromPosition(
+        TextPosition(offset: state.text.length),
+      );
   }
 }
