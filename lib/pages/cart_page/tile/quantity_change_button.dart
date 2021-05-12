@@ -4,11 +4,13 @@ import 'package:flutter/material.dart';
 class QuantityChangeButton extends StatelessWidget {
   const QuantityChangeButton({
     required this.isPlus,
+    required this.radius,
     required this.icon,
     required this.onPressed,
   });
 
   final bool isPlus;
+  final double radius;
   final IconData icon;
   final VoidCallback onPressed;
 
@@ -16,8 +18,8 @@ class QuantityChangeButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.horizontal(
-        right: isPlus ? const Radius.circular(5) : Radius.zero,
-        left: isPlus ? Radius.zero : const Radius.circular(5),
+        right: isPlus ?  Radius.circular(radius) : Radius.zero,
+        left: isPlus ? Radius.zero :  Radius.circular(radius),
       ),
       child: Container(
         decoration: BoxDecoration(

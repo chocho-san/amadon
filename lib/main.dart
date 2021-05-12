@@ -10,16 +10,19 @@ void main() => runApp(
       ),
     );
 
+
 class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'amadon',
+      title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: BuildTheme.themeData(),
       home: HomePage(),
     );
   }
 }
+
+const appTitle='amadon';

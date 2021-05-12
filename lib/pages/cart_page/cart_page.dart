@@ -58,7 +58,6 @@ class CartPage extends HookWidget {
   }
 }
 
-
 class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   _CartHeaderDelegate({required this.height, required this.child});
 
@@ -78,8 +77,9 @@ class _CartHeaderDelegate extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     return Container(
-        color: Theme.of(context).scaffoldBackgroundColor,
-        height: height,
-        child: child);
+      color: Theme.of(context).scaffoldBackgroundColor,
+      height: height,
+      child: child,
+    );
   }
 }

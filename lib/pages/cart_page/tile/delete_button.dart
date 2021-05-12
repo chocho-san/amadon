@@ -6,7 +6,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DeleteButton extends HookWidget {
   const DeleteButton(this.cartItem);
-
   final CartItem cartItem;
 
   @override

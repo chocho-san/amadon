@@ -1,5 +1,5 @@
-import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
-import 'package:amadon/model/entities/cart_item/cart_item.dart';
+
+import 'package:amadon/model/model.dart';
 import 'package:amadon/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -12,8 +12,8 @@ class QuantityChange extends HookWidget {
     Key? key,
     required this.cartItem,
   }) : super(key: key);
-
   final CartItem cartItem;
+  static const double _radius = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -23,29 +23,26 @@ class QuantityChange extends HookWidget {
       width: 150,
       decoration: BoxDecoration(
         border: Border.all(color: BuildTheme.borderColor),
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(_radius),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           QuantityChangeButton(
-            icon: Icons.remove,
             isPlus: false,
-            onPressed: () {
-              cartNotifier.decrement(cartItem);
-            },
+            radius: _radius,
+            icon: Icons.remove,
+            onPressed: () => cartNotifier.decrement(cartItem),
           ),
           Text('${cartItem.quantity}'),
           QuantityChangeButton(
-            icon: Icons.add,
             isPlus: true,
-            onPressed: () {
-              cartNotifier.increment(cartItem);
-            },
+            radius: _radius,
+            icon: Icons.add,
+            onPressed: () => cartNotifier.increment(cartItem),
           ),
         ],
       ),
     );
   }
 }
-

@@ -12,6 +12,7 @@ class MenuDrawer extends StatelessWidget {
           const DrawerTile(0, 'トップ'),
           const DrawerTile(2, 'カート'),
           const DrawerTile(4, 'ランキング'),
+          const Divider(),
         ],
       ),
     );

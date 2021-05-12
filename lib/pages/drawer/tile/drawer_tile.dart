@@ -5,7 +5,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DrawerTile extends HookWidget {
   const DrawerTile(this.page, this.title);
-
   final String title;
   final int page;
 

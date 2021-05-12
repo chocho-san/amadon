@@ -19,8 +19,6 @@ class ItemApi {
 
   //楽天商品検索api
   Future<List<Item>> getItems(String keyword) async {
-    // def aaa = Map<String, dynamic>;
-
     final response = await _client.get(
       Uri.parse('$requestUrl${'${Uri.encodeComponent(keyword)}'}'),
     );

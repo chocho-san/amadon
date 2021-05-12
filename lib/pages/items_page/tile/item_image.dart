@@ -1,3 +1,4 @@
+import 'package:amadon/theme.dart';
 import 'package:flutter/widgets.dart';
 
 class ItemImage extends StatelessWidget {
@@ -11,7 +12,9 @@ class ItemImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.horizontal(left: Radius.circular(5)),
+      borderRadius: const BorderRadius.horizontal(
+        left: Radius.circular(BuildTheme.radius),
+      ),
       child: SizedBox(
         width: 130,
         height: 180,

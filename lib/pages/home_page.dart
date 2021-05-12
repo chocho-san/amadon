@@ -1,3 +1,4 @@
+import 'package:amadon/main.dart';
 import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
@@ -11,38 +12,30 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class HomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final isCartPage = context.read(currentPageProvider).state == 2;
+    final isCartPage = useProvider(currentPageProvider).state == 2;
     final pageNotifier = useProvider(pageProvider.notifier);
     return Container(
-      // color: const Color.fromRGBO(102, 203, 205, 1),
+      color: BuildTheme.unSafeAreaColor,
       child: SafeArea(
         child: Scaffold(
-          // key: _scaffold,
           drawer: MenuDrawer(),
-          onDrawerChanged: (isOpen) {
-            print('開いたんか？$isOpen');
-          },
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(!isCartPage ? 140 : 70),
+            preferredSize: Size.fromHeight(!isCartPage ? 140 : 60),
             child: AppBar(
               title: TextButton(
-                onPressed: () {
-                  pageNotifier.pageTrip(context, 0);
-                },
-                child: const Text('amadon'),
+                onPressed: () => pageNotifier.pageTrip(context, 0),
+                child: const Text(appTitle),
               ),
               flexibleSpace: Container(
-                decoration: const BoxDecoration(
-                    gradient: BuildTheme.appBarGradient),
+                decoration:
+                    const BoxDecoration(gradient: BuildTheme.appBarGradient),
               ),
               actions: [
                 !isCartPage
                     ? Container()
                     : IconButton(
                         icon: const Icon(Icons.search),
-                        onPressed: () {
-                          pageNotifier.pageTrip(context, 3);
-                        },
+                        onPressed: () => pageNotifier.pageTrip(context, 3),
                       ),
                 CartButton(),
               ],

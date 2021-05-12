@@ -1,3 +1,4 @@
+import 'package:amadon/main.dart';
 import 'package:flutter/material.dart';
 
 class DrawerHeaderTile extends StatelessWidget {
@@ -13,22 +14,16 @@ class DrawerHeaderTile extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const <Widget>[
+            children:  <Widget>[
                 Text(
                 'こんにちは!',
                 overflow: TextOverflow.ellipsis, //テキストが多い場合は省略記号。
                 maxLines: 2,
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 22,
-                ),
+                style: Theme.of(context).textTheme.headline6,
               ),
                 Text(
-                'amadon へようこそ',
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                ),
+                '$appTitle へようこそ',
+                  style: Theme.of(context).textTheme.headline5,
               ),
             ],
           ),

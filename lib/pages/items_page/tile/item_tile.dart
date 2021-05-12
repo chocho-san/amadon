@@ -1,7 +1,7 @@
-import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
-import 'package:amadon/model/entities/item/item.dart';
+import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/items_page/tile/item_image.dart';
 import 'package:amadon/pages/items_page/tile/star_rating.dart';
+import 'package:amadon/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,8 +18,8 @@ class ItemTile extends HookWidget {
       padding: const EdgeInsets.only(top: 8),
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey[400]!),
-          borderRadius: BorderRadius.circular(5),
+          border: Border.all(color: BuildTheme.borderColor),
+          borderRadius: BorderRadius.circular(BuildTheme.radius),
         ),
         height: 180,
         child: Row(
@@ -37,23 +37,19 @@ class ItemTile extends HookWidget {
                   children: [
                     Text(
                       item.itemName,
-                      style: const TextStyle(
-                        fontSize: 14,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText2,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
                     StarRating(item.reviewAverage, item.totalReview),
                     Text(
                       item.price,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: const TextStyle(
+                          color: BuildTheme.priceColor, fontSize: 22),
                     ),
                     Center(
                       child: ElevatedButton(
-                        // style: ButtonStyle(),
-                        onPressed: () {
-                          cartNotifier.addToCart(item);
-                        },
+                        onPressed: () => cartNotifier.addToCart(item),
                         child: const Text('カートに入れる'),
                       ),
                     ),

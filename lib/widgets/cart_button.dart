@@ -25,7 +25,7 @@ class CartButton extends HookWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      child:  IconButton(
+      child: IconButton(
         icon: const Icon(Icons.shopping_cart),
         iconSize: 30,
         onPressed: () => pageNotifier.pageTrip(context, 2),

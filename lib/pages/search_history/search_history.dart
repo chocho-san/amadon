@@ -46,9 +46,7 @@ class SearchHistory extends HookWidget {
                           Icons.arrow_upward,
                           color: Colors.black38,
                         ),
-                        onPressed: () {
-                          textNotifier.addWord(words[index]);
-                        },
+                        onPressed: () => textNotifier.addWord(words[index]),
                       ),
                     ],
                   ),

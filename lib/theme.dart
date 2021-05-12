@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BuildTheme {
+  static const unSafeAreaColor = Color.fromRGBO(102, 203, 205, 1);
   static const appBarColor1 = Color.fromRGBO(130, 216, 227, 1);
   static const appBarColor2 = Color.fromRGBO(165, 231, 205, 1);
 
@@ -26,49 +27,49 @@ class BuildTheme {
 
   static const borderColor = Colors.grey;
 
+  static const searchHistoryColor = Color.fromRGBO(32, 32, 165, 1);
+
+  static const double radius = 10;
+
   static ThemeData themeData() {
-    // const fontFamily = 'Hiragino Maru Gothic ProN';
 
     final _outlineInputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: BorderRadius.circular(radius),
       borderSide: const BorderSide(color: borderColor), // 枠線の色
     );
 
     return ThemeData(
       primaryTextTheme: const TextTheme(
+        headline5: TextStyle(color: Colors.black),
         headline6: TextStyle(color: Colors.black),
-        bodyText2:
-            TextStyle(color: Color.fromRGBO(32, 32, 165, 1), fontSize: 18),
+        bodyText2: TextStyle(color: searchHistoryColor, fontSize: 18),
       ),
-      // primaryColor: const Color.fromRGBO(102, 203, 205, 1),
-// colorScheme: ,
+
       primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
 
+      //カートの値段テキスト
       accentTextTheme: const TextTheme(
         headline5: TextStyle(
           fontWeight: FontWeight.bold,
         ),
       ),
 
-      textTheme: const TextTheme(
-        headline4: TextStyle(
-          color: Colors.black87,
+      textTheme: const TextTheme().copyWith(
+        headline4: const TextStyle(
           fontWeight: FontWeight.bold,
         ),
-        // priceのテーマ
-        headline5: TextStyle(
-          fontSize: 22,
-          color: priceColor,
+        headline5: const TextStyle(
+          fontWeight: FontWeight.bold,
+        ),
+        headline6: const TextStyle(
+          fontWeight: FontWeight.bold,
         ),
       ),
-      // primarySwatch: Colors.blue,
       accentColor: accentColor,
-      // splashFactory: InkRipple.splashFactory,
-      // typography: Typography.material2018(),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(radius),
           ),
           padding: const EdgeInsets.symmetric(
             horizontal: 16,
