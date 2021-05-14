@@ -3,8 +3,7 @@ import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
 import 'package:amadon/theme.dart';
-import 'package:amadon/widgets/cart_button.dart';
-import 'package:amadon/widgets/search_bar.dart';
+import 'package:amadon/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -20,6 +19,7 @@ class HomePage extends HookWidget {
         child: Scaffold(
           drawer: MenuDrawer(),
           appBar: PreferredSize(
+
             preferredSize: Size.fromHeight(!isCartPage ? 140 : 60),
             child: AppBar(
               title: TextButton(

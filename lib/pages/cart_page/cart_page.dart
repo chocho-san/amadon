@@ -1,4 +1,4 @@
-import 'package:amadon/model/controllers/cart_controller/cart_controller.dart';
+import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/cart_page/order_button.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +21,7 @@ class CartPage extends HookWidget {
                     children: [
                       Text(
                         cartState.numberState,
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).primaryTextTheme.headline6,
                       ),
                       Text(
                         cartState.priceState,

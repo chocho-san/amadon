@@ -18,7 +18,7 @@ class BuildTheme {
       end: Alignment.bottomCenter,
       colors: <Color>[quantityButtonColor1, quantityButtonColor2]);
 
-  static const accentColor = Color.fromRGBO(254, 216, 19, 1);
+  static const buttonColor = Color.fromRGBO(254, 216, 19, 1);
 
   static const starColor = Color.fromRGBO(255, 164, 28, 1);
   static const starColor2 = Color.fromRGBO(228, 121, 16, 1);
@@ -27,25 +27,26 @@ class BuildTheme {
 
   static const borderColor = Colors.grey;
 
+  static const accentColor = Color(0x66BCBCBC);
+
   static const searchHistoryColor = Color.fromRGBO(32, 32, 165, 1);
 
   static const double radius = 10;
 
   static ThemeData themeData() {
-
     final _outlineInputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(radius),
       borderSide: const BorderSide(color: borderColor), // 枠線の色
     );
 
     return ThemeData(
+      accentColor: accentColor,
       primaryTextTheme: const TextTheme(
         headline5: TextStyle(color: Colors.black),
         headline6: TextStyle(color: Colors.black),
         bodyText2: TextStyle(color: searchHistoryColor, fontSize: 18),
       ),
 
-      primaryIconTheme: const IconThemeData(color: Colors.black, size: 100),
 
       //カートの値段テキスト
       accentTextTheme: const TextTheme(
@@ -65,7 +66,13 @@ class BuildTheme {
           fontWeight: FontWeight.bold,
         ),
       ),
-      accentColor: accentColor,
+
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        actionsIconTheme: IconThemeData(color: Colors.black),
+      ),
+
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           shape: RoundedRectangleBorder(
@@ -75,7 +82,7 @@ class BuildTheme {
             horizontal: 16,
             vertical: 8,
           ),
-          primary: accentColor,
+          primary: buttonColor,
           onPrimary: Colors.black,
         ),
       ),

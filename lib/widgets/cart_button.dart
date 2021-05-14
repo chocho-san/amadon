@@ -1,5 +1,4 @@
 import 'package:amadon/model/model.dart';
-import 'package:amadon/theme.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,20 +13,19 @@ class CartButton extends HookWidget {
       position: BadgePosition.topEnd(top: 1, end: 15),
       animationDuration: const Duration(milliseconds: 50),
       animationType: BadgeAnimationType.scale,
-      badgeColor: BuildTheme.appBarColor2,
+      badgeColor: Colors.transparent,
       shape: BadgeShape.square,
       padding: const EdgeInsets.all(0),
       elevation: 0,
       badgeContent: Text(
         total,
         style: const TextStyle(
-          color: Colors.black,
           fontWeight: FontWeight.bold,
+          fontSize: 16,
         ),
       ),
       child: IconButton(
         icon: const Icon(Icons.shopping_cart),
-        iconSize: 30,
         onPressed: () => pageNotifier.pageTrip(context, 2),
       ),
     );

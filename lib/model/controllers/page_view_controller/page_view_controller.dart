@@ -9,6 +9,8 @@ class PageViewController extends StateNotifier<PageController> {
 
   void pageTrip(BuildContext context, int index) {
     if (index != 3) {
+      //Appすべてのフォーカス外す
+      //このアプリでは検索フィールドのみ
       FocusScope.of(context).unfocus();
     }
     state.jumpToPage(index);
