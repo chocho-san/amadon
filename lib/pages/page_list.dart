@@ -20,11 +20,12 @@ class PageList extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final pageController = useProvider(pageProvider);
+    final nextPageNotifier = useProvider(currentPageProvider.notifier);
     return PageView(
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       controller: pageController,
-      onPageChanged: (index) => context.read(currentPageProvider).state = index,
+      onPageChanged: (index) => nextPageNotifier.state = index,
       children: _list,
     );
   }
