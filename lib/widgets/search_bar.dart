@@ -15,12 +15,11 @@ class SearchBar extends HookWidget {
 
     _wordNode.addListener(() {
       if (_wordNode.hasFocus) {
-        print('フォーカスしてる！！！！');
         return pageNotifier.pageTrip(context, 3);
-      } else {
-        print('フォーカスしてないよ');
       }
     });
+
+
 
     return Padding(
       padding: const EdgeInsets.all(8),
@@ -32,7 +31,10 @@ class SearchBar extends HookWidget {
           decoration: const InputDecoration(
             hintText: '何をお探しですか？',
             contentPadding: EdgeInsets.symmetric(vertical: 5),
-            prefixIcon: Icon(Icons.search,color: Colors.black54,),
+            prefixIcon: Icon(
+              Icons.search,
+              color: Colors.black54,
+            ),
           ),
           onFieldSubmitted: (word) {
             itemsNotifier.searchItems(word);
@@ -41,4 +43,3 @@ class SearchBar extends HookWidget {
     );
   }
 }
-

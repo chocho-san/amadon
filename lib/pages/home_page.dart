@@ -16,11 +16,12 @@ class HomePage extends HookWidget {
     return Container(
       color: BuildTheme.unSafeAreaColor,
       child: SafeArea(
+        bottom: false,
         child: Scaffold(
           drawer: MenuDrawer(),
           appBar: PreferredSize(
 
-            preferredSize: Size.fromHeight(!isCartPage ? 140 : 60),
+            preferredSize: Size.fromHeight(!isCartPage ? 140 : 70),
             child: AppBar(
               title: TextButton(
                 onPressed: () => pageNotifier.pageTrip(context, 0),

@@ -24,7 +24,6 @@ class ItemsController extends StateNotifier<ItemsState> {
   void deleteWord(int index){
     state=state.copyWith(
       searchWords: state.searchWords..removeAt(index),
-
     );
   }
 }
