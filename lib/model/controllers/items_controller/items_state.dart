@@ -5,7 +5,7 @@ part 'items_state.freezed.dart';
 
 @freezed
 class ItemsState with _$ItemsState {
-  factory ItemsState({
+  const factory ItemsState({
     @Default(<Item>[]) List<Item> items,
     @Default('') String keyWord,
     @Default(<String>[]) List<String> searchWords,

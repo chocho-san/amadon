@@ -2,6 +2,8 @@ import 'package:amadon/main.dart';
 import 'package:flutter/material.dart';
 
 class DrawerHeaderTile extends StatelessWidget {
+  const DrawerHeaderTile({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(

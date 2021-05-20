@@ -7,7 +7,8 @@ final itemsProvider = StateNotifierProvider<ItemsController, ItemsState>(
 );
 
 class ItemsController extends StateNotifier<ItemsState> {
-  ItemsController({required this.read}) : super(ItemsState(searchWords:[]));
+  ItemsController({required this.read})
+      : super(const ItemsState(searchWords: []));
 
   final Reader read;
 
@@ -21,9 +22,9 @@ class ItemsController extends StateNotifier<ItemsState> {
     state = state.copyWith(isLoading: false);
   }
 
-  void deleteWord(int index){
-    state=state.copyWith(
-      searchWords: state.searchWords..removeAt(index),
+  void deleteWord(String word) {
+    state = state.copyWith(
+      searchWords: state.searchWords..remove(word),
     );
   }
 }

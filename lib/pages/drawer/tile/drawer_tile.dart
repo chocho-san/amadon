@@ -4,7 +4,11 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class DrawerTile extends HookWidget {
-  const DrawerTile(this.page, this.title);
+  const DrawerTile({
+    Key? key,
+    required this.page,
+    required this.title,
+  }) : super(key: key);
   final String title;
   final int page;
 

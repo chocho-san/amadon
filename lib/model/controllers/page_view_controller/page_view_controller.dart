@@ -13,4 +13,5 @@ class PageViewController extends StateNotifier<PageController> {
     }
     state.jumpToPage(index);
   }
+
 }

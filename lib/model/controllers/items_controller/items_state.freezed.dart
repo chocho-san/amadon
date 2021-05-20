@@ -146,13 +146,12 @@ class __$ItemsStateCopyWithImpl<$Res> extends _$ItemsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ItemsState extends _ItemsState {
-  _$_ItemsState(
+class _$_ItemsState implements _ItemsState {
+  const _$_ItemsState(
       {this.items = const <Item>[],
       this.keyWord = '',
       this.searchWords = const <String>[],
-      this.isLoading = false})
-      : super._();
+      this.isLoading = false});
 
   @JsonKey(defaultValue: const <Item>[])
   @override
@@ -203,13 +202,12 @@ class _$_ItemsState extends _ItemsState {
       __$ItemsStateCopyWithImpl<_ItemsState>(this, _$identity);
 }
 
-abstract class _ItemsState extends ItemsState {
-  factory _ItemsState(
+abstract class _ItemsState implements ItemsState {
+  const factory _ItemsState(
       {List<Item> items,
       String keyWord,
       List<String> searchWords,
       bool isLoading}) = _$_ItemsState;
-  _ItemsState._() : super._();
 
   @override
   List<Item> get items => throw _privateConstructorUsedError;

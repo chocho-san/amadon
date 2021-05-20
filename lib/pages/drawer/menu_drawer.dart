@@ -3,16 +3,16 @@ import 'package:amadon/pages/drawer/tile/drawer_tile.dart';
 import 'package:flutter/material.dart';
 
 class MenuDrawer extends StatelessWidget {
+  const MenuDrawer({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
-        children: <Widget>[
-          DrawerHeaderTile(),
-          const DrawerTile(0, 'トップ'),
-          const DrawerTile(2, 'カート'),
-          const DrawerTile(4, 'ランキング'),
-          const Divider(),
+        children: const <Widget>[
+           DrawerHeaderTile(),
+           DrawerTile(page:0, title:'トップ'),
+           DrawerTile(page:2, title:'カート'),
+           Divider(),
         ],
       ),
     );

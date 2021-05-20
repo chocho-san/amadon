@@ -7,16 +7,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CartTile extends HookWidget {
-  const CartTile({
-    Key? key,
-    required this.cartItem,
-  }) : super(key: key);
+final currentCartItem = ScopedProvider<CartItem>(null);
 
-  final CartItem cartItem;
+class CartTile extends HookWidget {
+  const CartTile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cartItem = useProvider(currentCartItem);
     final cartNotifier = useProvider(cartProvider.notifier);
     return Slidable(
       key: ValueKey(cartItem),
@@ -44,15 +42,13 @@ class CartTile extends HookWidget {
         child: Column(
           // crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-           CartTileInfo(cartItem),
+            const CartTileInfo(),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                QuantityChange(
-                  cartItem: cartItem,
-                ),
-                DeleteButton(cartItem),
+              children: const [
+                QuantityChange(),
+                DeleteButton(),
               ],
             ),
             const Divider(),

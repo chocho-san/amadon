@@ -19,8 +19,6 @@ class SearchBar extends HookWidget {
       }
     });
 
-
-
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextFormField(

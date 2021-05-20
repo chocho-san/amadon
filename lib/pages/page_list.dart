@@ -10,24 +10,25 @@ import 'items_page/items_list.dart';
 final currentPageProvider = StateProvider((ref) => 0);
 
 class PageList extends HookWidget {
-  final _list = [
-    TopPage(),
-    ItemsList(),
-    CartPage(),
-    SearchHistory(),
-  ];
+  const PageList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final pageController = useProvider(pageProvider);
-    final nextPageNotifier = useProvider(currentPageProvider.notifier);
+    final _list = [
+      const TopPage(),
+      const ItemsList(),
+      const CartPage(),
+      const SearchHistory(),
+    ];
     return PageView(
       scrollDirection: Axis.horizontal,
       physics: const NeverScrollableScrollPhysics(),
       controller: pageController,
-      onPageChanged: (index) => nextPageNotifier.state = index,
+      onPageChanged: (index) {
+        context.read(currentPageProvider).state = index;
+      },
       children: _list,
     );
   }
 }
-

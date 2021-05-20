@@ -7,12 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+//コンストラクタに渡さなくてよく、tileがリビルドされない！
+final currentItem = ScopedProvider<Item>(null);
+
 class ItemTile extends HookWidget {
-  const ItemTile({Key? key, required this.item}) : super(key: key);
-  final Item item;
+  const ItemTile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final item = useProvider(currentItem);
     final cartNotifier = useProvider(cartProvider.notifier);
     return Padding(
       padding: const EdgeInsets.only(top: 8),
@@ -24,9 +27,7 @@ class ItemTile extends HookWidget {
         height: 180,
         child: Row(
           children: [
-            ItemImage(
-              imageUrl: item.imageUrl,
-            ),
+            const ItemImage(),
             const SizedBox(width: 10),
             Flexible(
               child: Padding(
@@ -41,7 +42,7 @@ class ItemTile extends HookWidget {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 3,
                     ),
-                    StarRating(item.reviewAverage, item.totalReview),
+                    const StarRating(),
                     Text(
                       item.price,
                       style: const TextStyle(

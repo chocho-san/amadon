@@ -4,6 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class OrderButton extends HookWidget {
+  const OrderButton({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final cartNotifier = useProvider(cartProvider.notifier);

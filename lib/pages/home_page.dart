@@ -9,6 +9,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class HomePage extends HookWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final isCartPage = useProvider(currentPageProvider).state == 2;
@@ -18,9 +20,8 @@ class HomePage extends HookWidget {
       child: SafeArea(
         bottom: false,
         child: Scaffold(
-          drawer: MenuDrawer(),
+          drawer: const MenuDrawer(),
           appBar: PreferredSize(
-
             preferredSize: Size.fromHeight(!isCartPage ? 140 : 70),
             child: AppBar(
               title: TextButton(
@@ -50,7 +51,7 @@ class HomePage extends HookWidget {
                   : null,
             ),
           ),
-          body: PageList(),
+          body: const PageList(),
         ),
       ),
     );

@@ -20,7 +20,7 @@ class MyApp extends HookWidget {
       title: appTitle,
       debugShowCheckedModeBanner: false,
       theme: BuildTheme.themeData(),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }
