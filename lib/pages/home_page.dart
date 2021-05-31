@@ -1,4 +1,4 @@
-import 'package:amadon/main.dart';
+import 'package:amadon/app_title.dart';
 import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
 import 'package:amadon/pages/page_list.dart';
@@ -13,6 +13,7 @@ class HomePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = useProvider(titleProvider);
     final isCartPage = useProvider(currentPageProvider).state == 2;
     final pageNotifier = useProvider(pageProvider.notifier);
     return Container(
@@ -26,7 +27,7 @@ class HomePage extends HookWidget {
             child: AppBar(
               title: TextButton(
                 onPressed: () => pageNotifier.pageTrip(context, 0),
-                child: const Text(appTitle),
+                child: Text(title),
               ),
               flexibleSpace: Container(
                 decoration:
