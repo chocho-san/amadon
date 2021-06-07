@@ -17,7 +17,11 @@ class ItemsController extends StateNotifier<ItemsState> {
     state = state.copyWith(isLoading: true);
     state = state.copyWith(
       items: await read(itemsFetcher).getItems(keyWord),
-      searchWords: (state.searchWords..insert(0, keyWord)).toSet().toList(),
+      // searchWords: (state.searchWords..insert(0, keyWord)).toSet().toList(),
+      searchWords: <String>{
+        ...state.searchWords,
+        keyWord,
+      }.toSet().toList(),
     );
     state = state.copyWith(isLoading: false);
   }

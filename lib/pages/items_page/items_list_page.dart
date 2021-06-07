@@ -1,4 +1,5 @@
 import 'package:amadon/model/model.dart';
+import 'package:amadon/page_type.dart';
 import 'package:amadon/pages/items_page/tile/item_tile.dart';
 import 'package:amadon/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -6,11 +7,18 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 
-class ItemsList extends HookWidget {
-  const ItemsList({Key? key}) : super(key: key);
+class ItemsListPage extends HookWidget {
+  const ItemsListPage({Key? key}) : super(key: key);
 
+  static Route<void> route() {
+    return MaterialPageRoute(
+      // settings: RouteSettings(name: pageName[PageType.items]),
+      builder: (context) => const ItemsListPage(),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    // print(ModalRoute.of(context)!.settings.name);
     final isLoading = useProvider(itemsProvider.select((s) => s.isLoading));
     final itemsState = useProvider(itemsProvider);
     return isLoading

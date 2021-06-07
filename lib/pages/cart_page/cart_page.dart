@@ -1,4 +1,5 @@
 import 'package:amadon/model/model.dart';
+import 'package:amadon/page_type.dart';
 import 'package:amadon/pages/cart_page/header/cart_summary_info.dart';
 import 'package:amadon/pages/cart_page/header/order_button.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile.dart';
@@ -9,8 +10,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class CartPage extends HookWidget {
   const CartPage({Key? key}) : super(key: key);
 
+  static Route<void> route() {
+    return MaterialPageRoute(
+      // settings: RouteSettings(name: pageName[PageType.cart]),
+      builder: (context) => const CartPage(),
+    );
+  }
   @override
   Widget build(BuildContext context) {
+    // print(ModalRoute.of(context)!.settings.name);
     final cartItems = useProvider(cartProvider).cartItems;
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
