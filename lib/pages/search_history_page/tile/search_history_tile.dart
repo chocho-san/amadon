@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final searchWord = ScopedProvider<String>(null);
+final historyWord = ScopedProvider<String>(null);
 
 class SearchHistoryTile extends HookWidget {
   const SearchHistoryTile({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final word = useProvider(searchWord);
+    final word = useProvider(historyWord);
     final itemsNotifier = useProvider(itemsProvider.notifier);
     // final navigatorKey = useProvider(navigatorKeyProvider);
     final textNotifier = useProvider(searchProvider.notifier);
@@ -22,10 +22,10 @@ class SearchHistoryTile extends HookWidget {
       key: ValueKey(word),
       onTap: () async {
         textNotifier.addWord(word);
-        // page.state = PageType.items;
-        // await navigatorKey.state.currentState!.push<void>(
-        //   ItemsListPage.route(),
-        // );
+        await Navigator.of(context).pushAndRemoveUntil(
+          ItemsListPage.route(),
+          ModalRoute.withName('/'),
+        );
         await itemsNotifier.searchItems(word);
       },
       child: Column(

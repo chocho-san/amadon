@@ -22,11 +22,11 @@ class ItemsListPage extends HookWidget {
     // print(ModalRoute.of(context)!.settings.name);
     final isLoading = useProvider(itemsProvider.select((s) => s.isLoading));
     final itemsState = useProvider(itemsProvider);
-    return isLoading
-        ? LoadingIndicator()
-        : Scaffold(
-            appBar: const CommonAppBar(),
-            body: Scrollbar(
+    return Scaffold(
+      appBar: const CommonAppBar(),
+      body: isLoading
+          ? LoadingIndicator()
+          : Scrollbar(
               isAlwaysShown: false,
               child: SingleChildScrollView(
                 child: Padding(
@@ -61,6 +61,6 @@ class ItemsListPage extends HookWidget {
                 ),
               ),
             ),
-          );
+    );
   }
 }

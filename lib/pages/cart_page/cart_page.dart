@@ -1,8 +1,10 @@
+import 'package:amadon/logger.dart';
 import 'package:amadon/model/model.dart';
 import 'package:amadon/page_type.dart';
 import 'package:amadon/pages/cart_page/header/cart_summary_info.dart';
 import 'package:amadon/pages/cart_page/header/order_button.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile.dart';
+import 'package:amadon/theme.dart';
 import 'package:amadon/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -39,10 +41,18 @@ class CartPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    logger.info('build カートページ');
+
     // print(ModalRoute.of(context)!.settings.name);
-    final cartItems = useProvider(cartProvider).cartItems;
+    final cartItems = useProvider(
+      cartProvider.select((s) => s.cartItems),
+    );
     return Scaffold(
-      appBar: const CommonAppBar(),
+      appBar: AppBar(
+        title: Text('カート'),
+        backgroundColor: BuildTheme.appBarColor1,
+      ),
+      // appBar: const CommonAppBar(),
       body: NestedScrollView(
         headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
           return <Widget>[

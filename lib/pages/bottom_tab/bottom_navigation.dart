@@ -25,11 +25,15 @@ class BottomNavigation extends HookWidget {
     return ValueListenableBuilder<TabType>(
       valueListenable: tabType,
       builder: (ctx, type, _) => Scaffold(
-        body: type.navigator,
+        body: IndexedStack(
+          index: type.index,
+          children: TabType.values.map((type) => type.navigator).toList(),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.black87,
           selectedItemColor: Colors.teal,
+          currentIndex: type.index,
           items: TabType.values.map((type) => createTab(ctx, type)).toList(),
           onTap: (value) {
             final selectedTab = TabType.values[value];
@@ -41,7 +45,6 @@ class BottomNavigation extends HookWidget {
               tabType.value = selectedTab;
             }
           },
-          currentIndex: type.index,
         ),
       ),
     );

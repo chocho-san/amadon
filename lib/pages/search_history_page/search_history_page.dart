@@ -22,19 +22,23 @@ class SearchHistoryPage extends HookWidget {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: const CommonAppBar(),
+        appBar: const CommonAppBar(
+          isSearchPage: true,
+        ),
         body: words.isEmpty
-            ? const Text(
-                '検索履歴が表示されます',
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black38),
+            ? const Align(
+                alignment: Alignment.topCenter,
+                child: Text(
+                  '検索履歴が表示されます',
+                  style: TextStyle(color: Colors.black38),
+                ),
               )
             : ListView.builder(
                 itemCount: words.length,
                 itemBuilder: (_, index) {
                   return ProviderScope(
                     overrides: [
-                      searchWord.overrideWithValue(words[index]),
+                      historyWord.overrideWithValue(words[index]),
                     ],
                     child: const SearchHistoryTile(),
                   );

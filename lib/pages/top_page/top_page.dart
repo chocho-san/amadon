@@ -47,7 +47,9 @@
 //   }
 // }
 
+import 'package:amadon/logger.dart';
 import 'package:amadon/page_type.dart';
+import 'package:amadon/pages/search_history_page/search_history_page.dart';
 import 'package:amadon/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -83,13 +85,16 @@ class TopPage extends HookWidget {
     );
   }
 
+  static const String url = 'assets/svgs/shopping.svg';
+
   @override
   Widget build(BuildContext context) {
+    // final isFocused = useProvider(focusProvider);
+
+    logger.info('build トップページ');
     return Scaffold(
       appBar: const CommonAppBar(),
-      body: Center(
-        child: SvgPicture.asset('assets/svgs/shopping.svg'),
-      ),
+      body: Center(child: SvgPicture.asset(url)),
     );
   }
 }
