@@ -22,6 +22,17 @@ extension TabTypeEx on TabType {
     }
   }
 
+  String get tabToolTip {
+    switch (this) {
+      case TabType.top:
+        return 'top';
+      case TabType.cart:
+        return 'cart';
+      case TabType.menu:
+        return 'menu';
+    }
+  }
+
   GlobalKey<NavigatorState> get globalKey {
     switch (this) {
       case TabType.top:

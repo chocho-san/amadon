@@ -1,6 +1,6 @@
 import 'package:amadon/logger.dart';
 import 'package:amadon/model/model.dart';
-import 'package:amadon/page_type.dart';
+import 'package:amadon/tab_type.dart';
 import 'package:amadon/pages/cart_page/header/cart_summary_info.dart';
 import 'package:amadon/pages/cart_page/header/order_button.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile.dart';

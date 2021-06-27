@@ -17,19 +17,3 @@ class SearchController extends StateNotifier<TextEditingController> {
       );
   }
 }
-//
-// final searchProvider =
-//     StateNotifierProvider<SearchController, String>((_) => SearchController());
-//
-// class SearchController extends StateNotifier<String> {
-//   SearchController() : super('');
-//
-//   void addWord(TextEditingController textEditingController) {
-//     // state
-//     //   ..text = word
-//     //   ..selection = TextSelection.fromPosition(
-//     //     TextPosition(offset: state.text.length),
-//     //   );
-//     state = textEditingController.text;
-//   }
-// }
