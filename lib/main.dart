@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-
-void main() => runApp(
-      const ProviderScope(
-        child: MyApp(),
-      ),
-    );
-
+void main() {
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
+}
 
 class MyApp extends HookWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,4 +24,3 @@ class MyApp extends HookWidget {
     );
   }
 }
-

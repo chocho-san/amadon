@@ -11,9 +11,9 @@ class SearchBar extends HookWidget /*implements PreferredSizeWidget*/ {
   Widget build(BuildContext context) {
     final textController = useProvider(searchProvider);
     final itemsNotifier = useProvider(itemsProvider.notifier);
-    final navigatorKey = useProvider(navigatorKeyProvider);
-    final page = useProvider(currentPageProvider);
-    final isSearchPage = page.state == PageType.search;
+    // final navigatorKey = useProvider(navigatorKeyProvider);
+    // final page = useProvider(currentPageProvider);
+    // final isSearchPage = page.state == PageType.search;
     final searchFocusNode = useFocusNode();
     // useListenable(searchFocusNode);
 
@@ -34,7 +34,7 @@ class SearchBar extends HookWidget /*implements PreferredSizeWidget*/ {
     return Padding(
       padding: const EdgeInsets.all(8),
       child: TextField(
-          autofocus: isSearchPage,
+          // autofocus: isSearchPage,
           textInputAction: TextInputAction.search,
           focusNode: searchFocusNode,
           controller: textController,
@@ -48,10 +48,10 @@ class SearchBar extends HookWidget /*implements PreferredSizeWidget*/ {
           ),
           onSubmitted: (word) {
             itemsNotifier.searchItems(word);
-            page.state = PageType.items;
-            navigatorKey.state.currentState!.push<void>(
-              ItemsListPage.route(),
-            );
+            // page.state = PageType.items;
+            // navigatorKey.state.currentState!.push<void>(
+            //   ItemsListPage.route(),
+            // );
           }),
     );
   }

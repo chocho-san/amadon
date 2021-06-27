@@ -15,17 +15,17 @@ class SearchHistoryTile extends HookWidget {
   Widget build(BuildContext context) {
     final word = useProvider(searchWord);
     final itemsNotifier = useProvider(itemsProvider.notifier);
-    final navigatorKey = useProvider(navigatorKeyProvider);
+    // final navigatorKey = useProvider(navigatorKeyProvider);
     final textNotifier = useProvider(searchProvider.notifier);
-    final page = useProvider(currentPageProvider);
+    // final page = useProvider(currentPageProvider);
     return InkWell(
       key: ValueKey(word),
       onTap: () async {
         textNotifier.addWord(word);
-        page.state = PageType.items;
-        await navigatorKey.state.currentState!.push<void>(
-          ItemsListPage.route(),
-        );
+        // page.state = PageType.items;
+        // await navigatorKey.state.currentState!.push<void>(
+        //   ItemsListPage.route(),
+        // );
         await itemsNotifier.searchItems(word);
       },
       child: Column(
