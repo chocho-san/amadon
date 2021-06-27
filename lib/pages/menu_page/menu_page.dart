@@ -1,4 +1,5 @@
 import 'package:amadon/page_type.dart';
+import 'package:amadon/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
@@ -13,7 +14,7 @@ class MenuNavigator extends HookWidget {
         return MaterialPageRoute<void>(
           settings: settings,
           builder: (context) {
-            return const  MenuPage();
+            return const MenuPage();
           },
         );
       },
@@ -27,7 +28,10 @@ class MenuPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: const CommonAppBar(),
+      body: ListView(children: [
 
+      ],),
     );
   }
 }

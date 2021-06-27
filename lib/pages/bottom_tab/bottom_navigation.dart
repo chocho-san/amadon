@@ -28,10 +28,8 @@ class BottomNavigation extends HookWidget {
         body: type.navigator,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          unselectedItemColor: Colors.grey,
+          unselectedItemColor: Colors.black87,
           selectedItemColor: Colors.teal,
-          selectedLabelStyle: const TextStyle(fontSize: 10),
-          unselectedLabelStyle: const TextStyle(fontSize: 10),
           items: TabType.values.map((type) => createTab(ctx, type)).toList(),
           onTap: (value) {
             final selectedTab = TabType.values[value];

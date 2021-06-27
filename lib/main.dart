@@ -1,4 +1,5 @@
 import 'package:amadon/app_title.dart';
+import 'package:amadon/pages/bottom_tab/bottom_navigation.dart';
 import 'package:amadon/pages/home_page.dart';
 import 'package:amadon/theme.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class MyApp extends HookWidget {
       title: useProvider(titleProvider),
       debugShowCheckedModeBanner: false,
       theme: BuildTheme.themeData(),
-      home: const HomePage(),
+      home: const BottomNavigation(),
     );
   }
 }

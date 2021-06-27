@@ -47,17 +47,12 @@
 //   }
 // }
 
-
 import 'package:amadon/page_type.dart';
+import 'package:amadon/widgets/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-
-
-
-
-
 
 class TopNavigator extends HookWidget {
   const TopNavigator({Key? key}) : super(key: key);
@@ -70,14 +65,13 @@ class TopNavigator extends HookWidget {
         return MaterialPageRoute<void>(
           settings: settings,
           builder: (context) {
-            return const  TopPage();
+            return const TopPage();
           },
         );
       },
     );
   }
 }
-
 
 class TopPage extends HookWidget {
   const TopPage({Key? key}) : super(key: key);
@@ -88,10 +82,14 @@ class TopPage extends HookWidget {
       builder: (context) => const TopPage(),
     );
   }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: SvgPicture.asset('assets/svgs/shopping.svg'),
+    return Scaffold(
+      appBar: const CommonAppBar(),
+      body: Center(
+        child: SvgPicture.asset('assets/svgs/shopping.svg'),
+      ),
     );
   }
 }

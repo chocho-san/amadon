@@ -6,10 +6,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchBar extends HookWidget /*implements PreferredSizeWidget*/ {
+class SearchBar extends HookWidget {
+  const SearchBar({
+    Key? key,
+    required this.textEditingController,
+    required this.focusNode,
+  }) : super(key: key);
+
+  final TextEditingController textEditingController;
+  final FocusNode focusNode;
+
   @override
   Widget build(BuildContext context) {
-    final textController = useProvider(searchProvider);
+    // final textController = useProvider(searchProvider);
     final itemsNotifier = useProvider(itemsProvider.notifier);
     // final navigatorKey = useProvider(navigatorKeyProvider);
     // final page = useProvider(currentPageProvider);
@@ -17,47 +26,42 @@ class SearchBar extends HookWidget /*implements PreferredSizeWidget*/ {
     final searchFocusNode = useFocusNode();
     // useListenable(searchFocusNode);
 
-    ///TODO:navigatorKeyアカン？
-    ///https://stackoverflow.com/questions/50535490/cannot-focus-on-textfield-in-new-page-after-navigating-in-flutter
-    ///フォーカスしない
-    searchFocusNode.addListener(() {
-      if (searchFocusNode.hasFocus) {
-        print('フォーカスした！！！');
+    // ///TODO:navigatorKeyアカン？
+    // ///https://stackoverflow.com/questions/50535490/cannot-focus-on-textfield-in-new-page-after-navigating-in-flutter
+    // ///フォーカスしない
+    // searchFocusNode.addListener(() {
+    //   if (searchFocusNode.hasFocus) {
+    //     print('フォーカスした！！！');
+    //
+    //     // page.state = PageType.search;
+    //     // navigatorKey.state.currentState!.push(
+    //     //   SearchHistory.route(),
+    //     // );
+    //   }
+    // });
 
-        // page.state = PageType.search;
-        // navigatorKey.state.currentState!.push(
-        //   SearchHistory.route(),
-        // );
-      }
-    });
-
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: TextField(
-          // autofocus: isSearchPage,
-          textInputAction: TextInputAction.search,
-          focusNode: searchFocusNode,
-          controller: textController,
-          decoration: const InputDecoration(
-            hintText: '何をお探しですか？',
-            contentPadding: EdgeInsets.symmetric(vertical: 5),
-            prefixIcon: Icon(
-              Icons.search,
-              color: Colors.black54,
-            ),
+    return TextField(
+        // autofocus: isSearchPage,
+        textInputAction: TextInputAction.search,
+        focusNode: focusNode,
+        controller: textEditingController,
+        decoration: const InputDecoration(
+          hintText: '何をお探しですか？',
+          contentPadding: EdgeInsets.symmetric(vertical: 5),
+          prefixIcon: Icon(
+            Icons.search,
+            color: Colors.black54,
           ),
-          onSubmitted: (word) {
-            itemsNotifier.searchItems(word);
-            // page.state = PageType.items;
-            // navigatorKey.state.currentState!.push<void>(
-            //   ItemsListPage.route(),
-            // );
-          }),
-    );
-  }
+        ),
 
-// @override
-// Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+        onSubmitted: (word) {
+          itemsNotifier.searchItems(word);
+          // page.state = PageType.items;
+          Navigator.of(context).push<void>(
+            ItemsListPage.route(),
+          );
+        });
+  }
 }
 // import 'package:amadon/model/model.dart';
 // import 'package:amadon/pages/page_list.dart';
