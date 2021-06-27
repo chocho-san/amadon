@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_hooks: '>=0.16.0'
+  flutter_hooks:
   freezed_annotation:
   hooks_riverpod:
   http:
@@ -23,7 +23,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   build_runner:
-  freezed: '>=0.13.0'
+  freezed:
   pedantic_mono: any
   json_serializable:
 

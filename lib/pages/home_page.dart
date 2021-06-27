@@ -1,10 +1,9 @@
 import 'package:amadon/app_title.dart';
 import 'package:amadon/page_type.dart';
 import 'package:amadon/pages/drawer/menu_drawer.dart';
-import 'package:amadon/pages/search_history/search_history.dart';
+import 'package:amadon/pages/search_history_page/search_history_page.dart';
 import 'package:amadon/pages/top_page/top_page.dart';
 import 'package:amadon/theme.dart';
-import 'package:amadon/widgets/common_app_bar.dart';
 import 'package:amadon/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -48,7 +47,7 @@ class HomePage extends HookWidget {
                         onPressed: () {
                           page.state = PageType.search;
                           navigatorKey.state.currentState!.push(
-                            SearchHistory.route(),
+                            SearchHistoryPage.route(),
                           );
                         },
                       ),

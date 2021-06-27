@@ -1,6 +1,6 @@
 // import 'package:amadon/app_title.dart';
 // import 'package:amadon/page_type.dart';
-// import 'package:amadon/pages/search_history/search_history.dart';
+// import 'package:amadon/pages/search_history/search_history_page.dart';
 // import 'package:amadon/pages/top_page/top_page.dart';
 // import 'package:amadon/theme.dart';
 // import 'package:amadon/widgets/cart_button.dart';

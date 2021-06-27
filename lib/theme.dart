@@ -6,17 +6,19 @@ class BuildTheme {
   static const appBarColor2 = Color.fromRGBO(165, 231, 205, 1);
 
   static const appBarGradient = LinearGradient(
-      begin: Alignment.bottomLeft,
-      end: Alignment.topRight,
-      colors: <Color>[appBarColor1, appBarColor2]);
+    begin: Alignment.bottomLeft,
+    end: Alignment.topRight,
+    colors: <Color>[appBarColor1, appBarColor2],
+  );
 
   static const quantityButtonColor1 = Color.fromRGBO(246, 247, 249, 1);
   static const quantityButtonColor2 = Color.fromRGBO(230, 233, 236, 1);
 
   static const quantityButtonGradient = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: <Color>[quantityButtonColor1, quantityButtonColor2]);
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter,
+    colors: <Color>[quantityButtonColor1, quantityButtonColor2],
+  );
 
   static const buttonColor = Color.fromRGBO(254, 216, 19, 1);
 
@@ -46,7 +48,6 @@ class BuildTheme {
         headline6: TextStyle(color: Colors.black),
         bodyText2: TextStyle(color: searchHistoryColor, fontSize: 18),
       ),
-
 
       //カートの値段テキスト
       accentTextTheme: const TextTheme(
