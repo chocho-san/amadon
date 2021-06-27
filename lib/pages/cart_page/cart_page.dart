@@ -5,12 +5,10 @@ import 'package:amadon/pages/cart_page/header/cart_summary_info.dart';
 import 'package:amadon/pages/cart_page/header/order_button.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile.dart';
 import 'package:amadon/theme.dart';
-import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CartNavigator extends HookWidget {
+class CartNavigator extends StatelessWidget {
   const CartNavigator({Key? key}) : super(key: key);
 
   @override
@@ -29,27 +27,24 @@ class CartNavigator extends HookWidget {
   }
 }
 
-class CartPage extends HookWidget {
+class CartPage extends ConsumerWidget {
   const CartPage({Key? key}) : super(key: key);
 
   static Route<void> route() {
     return MaterialPageRoute(
-      // settings: RouteSettings(name: pageName[PageType.cart]),
       builder: (context) => const CartPage(),
     );
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     logger.info('build カートページ');
-
-    // print(ModalRoute.of(context)!.settings.name);
-    final cartItems = useProvider(
+    final cartItems = ref.watch(
       cartProvider.select((s) => s.cartItems),
     );
     return Scaffold(
       appBar: AppBar(
-        title: Text('カート'),
+        title: const Text('カート'),
         backgroundColor: BuildTheme.appBarColor1,
       ),
       // appBar: const CommonAppBar(),

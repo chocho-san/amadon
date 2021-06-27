@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchBar extends HookWidget {
+class SearchBar extends HookConsumerWidget {
   const SearchBar({
     Key? key,
     this.isSearchPage = false,
@@ -16,10 +16,10 @@ class SearchBar extends HookWidget {
   final bool isSearchPage;
 
   @override
-  Widget build(BuildContext context) {
-    final textEditingController = useProvider(searchProvider);
-    final itemsNotifier = useProvider(itemsProvider.notifier);
-    final isFocused = useProvider(focusProvider);
+  Widget build(BuildContext context,WidgetRef ref) {
+    final textEditingController = ref.watch(searchProvider);
+    final itemsNotifier = ref.watch(itemsProvider.notifier);
+    final isFocused = ref.watch(focusProvider);
 
     final textFocusNode = useFocusNode();
 

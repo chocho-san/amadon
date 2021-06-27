@@ -1,18 +1,16 @@
 import 'package:amadon/model/model.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class CartButton extends HookWidget {
+class CartButton extends ConsumerWidget {
   const CartButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final total = useProvider(cartProvider).totalNumber.toString();
-
+  Widget build(BuildContext context, WidgetRef ref) {
+    final total = ref.watch(cartProvider).totalNumber.toString();
     return Badge(
-      position: BadgePosition.topEnd(top: -12,end: -8),
+      position: BadgePosition.topEnd(top: -12, end: -8),
       animationDuration: const Duration(milliseconds: 50),
       animationType: BadgeAnimationType.scale,
       badgeColor: Colors.transparent,

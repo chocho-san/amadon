@@ -2,10 +2,9 @@ import 'package:amadon/logger.dart';
 import 'package:amadon/tab_type.dart';
 import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class TopNavigator extends HookWidget {
+class TopNavigator extends StatelessWidget {
   const TopNavigator({Key? key}) : super(key: key);
 
   @override
@@ -24,7 +23,7 @@ class TopNavigator extends HookWidget {
   }
 }
 
-class TopPage extends HookWidget {
+class TopPage extends StatelessWidget {
   const TopPage({Key? key}) : super(key: key);
 
   static Route<void> route() {

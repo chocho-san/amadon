@@ -1,14 +1,13 @@
 import 'package:amadon/model/model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class OrderButton extends HookWidget {
+class OrderButton extends ConsumerWidget {
   const OrderButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final cartNotifier = useProvider(cartProvider.notifier);
+  Widget build(BuildContext context,WidgetRef ref) {
+    final cartNotifier = ref.watch(cartProvider.notifier);
     return SizedBox(
       height: 45,
       width: double.infinity,

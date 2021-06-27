@@ -1,11 +1,10 @@
 import 'package:amadon/logger.dart';
 import 'package:amadon/tab_type.dart';
 import 'package:amadon/theme.dart';
-import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class MenuNavigator extends HookWidget {
+class MenuNavigator extends StatelessWidget {
   const MenuNavigator({Key? key}) : super(key: key);
 
   @override
@@ -30,16 +29,14 @@ class MenuPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     logger.info('build メニューページ');
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('メニュー'),
+        title: const Text('メニュー'),
         backgroundColor: BuildTheme.appBarColor1,
       ),
-
       // appBar: const CommonAppBar(),
       body: ListView(
-        children: [],
+        children: const [],
       ),
     );
   }

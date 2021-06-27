@@ -3,19 +3,18 @@ import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/cart_page/tile/cart_tile_info.dart';
 import 'package:amadon/pages/cart_page/tile/delete_button.dart';
 import 'package:amadon/pages/cart_page/tile/quantity_change.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final currentCartItem = ScopedProvider<CartItem>(null);
 
-class CartTile extends HookWidget {
+class CartTile extends ConsumerWidget {
   const CartTile({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final cartItem = useProvider(currentCartItem);
-    final cartNotifier = useProvider(cartProvider.notifier);
+  Widget build(BuildContext context,WidgetRef ref) {
+    final cartItem = ref.watch(currentCartItem);
+    final cartNotifier = ref.watch(cartProvider.notifier);
     return Slidable(
       key: ValueKey(cartItem),
       actionPane: const SlidableStrechActionPane(),

@@ -2,10 +2,9 @@ import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/search_history_page/tile/search_history_tile.dart';
 import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class SearchHistoryPage extends HookWidget {
+class SearchHistoryPage extends ConsumerWidget {
   const SearchHistoryPage({Key? key}) : super(key: key);
 
   static Route<void> route() {
@@ -15,8 +14,8 @@ class SearchHistoryPage extends HookWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    final words = useProvider(itemsProvider).searchWords;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final words = ref.watch(itemsProvider).searchWords;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

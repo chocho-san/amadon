@@ -2,19 +2,18 @@ import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/app_bar/search_controller.dart';
 import 'package:amadon/pages/items_page/items_list_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final historyWord = ScopedProvider<String>(null);
 
-class SearchHistoryTile extends HookWidget {
+class SearchHistoryTile extends ConsumerWidget {
   const SearchHistoryTile({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    final word = useProvider(historyWord);
-    final itemsNotifier = useProvider(itemsProvider.notifier);
-    final textNotifier = useProvider(searchProvider.notifier);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final word = ref.watch(historyWord);
+    final itemsNotifier = ref.watch(itemsProvider.notifier);
+    final textNotifier = ref.watch(searchProvider.notifier);
     return InkWell(
       key: ValueKey(word),
       onTap: () async {
