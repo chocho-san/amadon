@@ -22,6 +22,17 @@ extension TabTypeEx on TabType {
     }
   }
 
+  String get text {
+    switch (this) {
+      case TabType.top:
+        return 'トップ';
+      case TabType.cart:
+        return 'カート';
+      case TabType.menu:
+        return 'メニュー';
+    }
+  }
+
   String get tabToolTip {
     switch (this) {
       case TabType.top:

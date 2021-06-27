@@ -33,7 +33,7 @@ class BuildTheme {
 
   static const searchHistoryColor = Color.fromRGBO(32, 32, 165, 1);
 
-  static const double radius = 10;
+  static const double radius = 12;
 
   static ThemeData themeData() {
     final _outlineInputBorder = OutlineInputBorder(
@@ -84,13 +84,6 @@ class BuildTheme {
             vertical: 8,
           ),
           primary: buttonColor,
-          onPrimary: Colors.black,
-        ),
-      ),
-
-      textButtonTheme: TextButtonThemeData(
-        style: ElevatedButton.styleFrom(
-          textStyle: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           onPrimary: Colors.black,
         ),
       ),

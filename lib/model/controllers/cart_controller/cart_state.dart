@@ -6,7 +6,7 @@ import 'package:intl/intl.dart';
 part 'cart_state.freezed.dart';
 
 @freezed
-abstract class CartState implements _$CartState {
+class CartState with _$CartState {
   factory CartState({
     @Default(<CartItem>[]) List<CartItem> cartItems,
   }) = _CartState;

@@ -6,13 +6,12 @@ class OrderButton extends ConsumerWidget {
   const OrderButton({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
-    final cartNotifier = ref.watch(cartProvider.notifier);
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 45,
       width: double.infinity,
       child: ElevatedButton(
-        onPressed: cartNotifier.clear,
+        onPressed: ref.read(cartProvider.notifier).clear,
         child: const Text(
           '購入する',
           style: TextStyle(fontSize: 18),

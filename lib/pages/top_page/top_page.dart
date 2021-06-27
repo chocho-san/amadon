@@ -32,11 +32,10 @@ class TopPage extends StatelessWidget {
     );
   }
 
-  static const String url = 'assets/svgs/shopping.svg';
-
   @override
   Widget build(BuildContext context) {
     logger.info('build トップページ');
+    const url = 'assets/svgs/shopping.svg';
     return Scaffold(
       appBar: const CommonAppBar(),
       body: Center(child: SvgPicture.asset(url)),

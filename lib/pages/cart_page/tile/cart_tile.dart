@@ -12,9 +12,9 @@ class CartTile extends ConsumerWidget {
   const CartTile({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cartItem = ref.watch(currentCartItem);
-    final cartNotifier = ref.watch(cartProvider.notifier);
+    void _delete() => ref.read(cartProvider.notifier).delete(cartItem);
     return Slidable(
       key: ValueKey(cartItem),
       actionPane: const SlidableStrechActionPane(),
@@ -22,7 +22,7 @@ class CartTile extends ConsumerWidget {
       actions: <Widget>[
         SlideAction(
           color: Colors.red,
-          onTap: () => cartNotifier.delete(cartItem),
+          onTap: _delete,
           child: const Text(
             '削除',
             style: TextStyle(color: Colors.white),
@@ -32,7 +32,7 @@ class CartTile extends ConsumerWidget {
       secondaryActions: <Widget>[
         SlideAction(
           color: Colors.black12,
-          onTap: () => cartNotifier.delete(cartItem),
+          onTap: _delete,
           child: const Text('あとで買う'),
         ),
       ],

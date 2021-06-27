@@ -39,9 +39,7 @@ class CartPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     logger.info('build カートページ');
-    final cartItems = ref.watch(
-      cartProvider.select((s) => s.cartItems),
-    );
+    final cartItems = ref.watch(cartProvider).cartItems;
     return Scaffold(
       appBar: AppBar(
         title: const Text('カート'),

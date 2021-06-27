@@ -1,3 +1,4 @@
+import 'package:amadon/logger.dart';
 import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/search_history_page/tile/search_history_tile.dart';
 import 'package:amadon/pages/app_bar/common_app_bar.dart';
@@ -15,7 +16,10 @@ class SearchHistoryPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final words = ref.watch(itemsProvider).searchWords;
+    final words = ref.watch(
+      itemsProvider.select((s) => s.searchWords),
+    );
+    logger.info(words);
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

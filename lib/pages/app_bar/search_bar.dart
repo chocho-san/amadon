@@ -2,7 +2,6 @@ import 'package:amadon/model/model.dart';
 import 'package:amadon/pages/app_bar/search_controller.dart';
 import 'package:amadon/pages/items_page/items_list_page.dart';
 import 'package:amadon/pages/search_history_page/search_history_page.dart';
-import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,21 +15,9 @@ class SearchBar extends HookConsumerWidget {
   final bool isSearchPage;
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textEditingController = ref.watch(searchProvider);
-    final itemsNotifier = ref.watch(itemsProvider.notifier);
-    final isFocused = ref.watch(focusProvider);
-
     final textFocusNode = useFocusNode();
-
-    useEffect(() {
-      void listener() {
-        isFocused.state = textFocusNode.hasFocus;
-      }
-
-      textFocusNode.addListener(listener);
-      return;
-    }, [textFocusNode]);
 
     return TextField(
         autofocus: isSearchPage,
@@ -56,7 +43,7 @@ class SearchBar extends HookConsumerWidget {
           }
         },
         onSubmitted: (word) {
-          itemsNotifier.searchItems(word);
+          ref.read(itemsProvider.notifier).searchItems(word);
           textEditingController.text = word;
           Navigator.of(context).pushAndRemoveUntil(
             ItemsListPage.route(),

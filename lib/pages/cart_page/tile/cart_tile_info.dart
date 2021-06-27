@@ -7,13 +7,13 @@ class CartTileInfo extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cartItem = ref.watch(currentCartItem);
+    final cartItem = ref.watch(currentCartItem).item;
     return Row(
       children: [
         SizedBox(
           width: 120,
           height: 110,
-          child: Image.network(cartItem.item.imageUrl, fit: BoxFit.cover),
+          child: Image.network(cartItem.imageUrl, fit: BoxFit.cover),
         ),
         const SizedBox(width: 15),
         Flexible(
@@ -21,14 +21,14 @@ class CartTileInfo extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                cartItem.item.itemName,
+                cartItem.itemName,
                 style: const TextStyle(fontSize: 18),
                 overflow: TextOverflow.ellipsis,
                 maxLines: 3,
               ),
               const SizedBox(height: 20),
               Text(
-                cartItem.item.price,
+                cartItem.price,
                 style: Theme.of(context).accentTextTheme.headline5,
               ),
             ],

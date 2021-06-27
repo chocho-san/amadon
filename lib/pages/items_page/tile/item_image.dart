@@ -8,7 +8,7 @@ class ItemImage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final item = ref.watch(currentItem);
+    final url = ref.watch(currentItem).imageUrl;
     return ClipRRect(
       borderRadius: const BorderRadius.horizontal(
         left: Radius.circular(BuildTheme.radius),
@@ -17,7 +17,7 @@ class ItemImage extends ConsumerWidget {
         width: 130,
         height: 180,
         child: Image.network(
-          item.imageUrl,
+          url,
           fit: BoxFit.cover,
         ),
       ),

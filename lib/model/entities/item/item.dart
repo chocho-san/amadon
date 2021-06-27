@@ -6,7 +6,7 @@ part 'item.freezed.dart';
 part 'item.g.dart';
 
 @freezed
-abstract class Item implements _$Item {
+class Item with _$Item {
   factory Item({
     required String itemName,
     required int itemPrice,
@@ -24,17 +24,3 @@ abstract class Item implements _$Item {
   late final String totalReview =
       ' ${NumberFormat('#,###').format(reviewCount)}';
 }
-
-// class Item {
-//   String? itemName;
-//   int? itemPrice;
-//   List<Map<String, String>>? mediumImageUrls;
-//
-//   Item({
-//     this.itemName,
-//     this.itemPrice,
-//     this.mediumImageUrls,
-//   });
-// }
-
-// mediumImageUrls: json['mediumImageUrls'] as List<Map<String, String>>,

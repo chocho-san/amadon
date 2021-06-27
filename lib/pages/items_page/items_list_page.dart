@@ -16,7 +16,9 @@ class ItemsListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(itemsProvider.select((s) => s.isLoading));
+    final isLoading = ref.watch(
+      itemsProvider.select((s) => s.isLoading),
+    );
     return Scaffold(
       appBar: const CommonAppBar(),
       body: isLoading
@@ -53,15 +55,17 @@ class _ItemsListView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final itemsState = ref.watch(itemsProvider);
+    final items = ref.watch(
+      itemsProvider.select((s) => s.items),
+    );
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: itemsState.items.length,
+      itemCount: items.length,
       itemBuilder: (_, index) {
         return ProviderScope(
           overrides: [
-            currentItem.overrideWithValue(itemsState.items[index]),
+            currentItem.overrideWithValue(items[index]),
           ],
           child: const ItemTile(),
         );

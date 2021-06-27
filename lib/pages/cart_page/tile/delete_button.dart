@@ -8,15 +8,15 @@ class DeleteButton extends ConsumerWidget {
   const DeleteButton();
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cartItem = ref.watch(currentCartItem);
-    final cartNotifier = ref.watch(cartProvider.notifier);
+    void _delete() => ref.read(cartProvider.notifier).delete(cartItem);
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         side: const BorderSide(color: BuildTheme.borderColor),
         primary: Colors.white,
       ),
-      onPressed: () => cartNotifier.delete(cartItem),
+      onPressed: _delete,
       child: const Text('削除'),
     );
   }

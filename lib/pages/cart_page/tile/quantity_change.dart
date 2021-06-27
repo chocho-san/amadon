@@ -11,9 +11,8 @@ class QuantityChange extends ConsumerWidget {
   static const double _radius = 5;
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final cartItem = ref.watch(currentCartItem);
-    final cartNotifier = ref.watch(cartProvider.notifier);
     return Container(
       height: 32,
       width: 150,
@@ -28,14 +27,16 @@ class QuantityChange extends ConsumerWidget {
             isPlus: false,
             radius: _radius,
             icon: Icons.remove,
-            onPressed: () => cartNotifier.decrement(cartItem),
+            onPressed: () =>
+                ref.read(cartProvider.notifier).decrement(cartItem),
           ),
           Text('${cartItem.quantity}'),
           QuantityChangeButton(
             isPlus: true,
             radius: _radius,
             icon: Icons.add,
-            onPressed: () => cartNotifier.increment(cartItem),
+            onPressed: () =>
+                ref.read(cartProvider.notifier).increment(cartItem),
           ),
         ],
       ),
