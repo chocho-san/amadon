@@ -1,7 +1,7 @@
 import 'package:amadon/logger.dart';
 import 'package:amadon/page_type.dart';
 import 'package:amadon/theme.dart';
-import 'package:amadon/widgets/common_app_bar.dart';
+import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

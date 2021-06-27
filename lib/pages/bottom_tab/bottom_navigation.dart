@@ -5,20 +5,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 class BottomNavigation extends HookWidget {
   const BottomNavigation({Key? key}) : super(key: key);
 
-  BottomNavigationBarItem createTab(BuildContext context, TabType type) {
-    return BottomNavigationBarItem(
-      icon: TabIcon(
-        type: type,
-        isSelected: false,
-      ),
-      activeIcon: TabIcon(
-        type: type,
-        isSelected: true,
-      ),
-      label: '',
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final tabType = useValueNotifier(TabType.top);
@@ -32,9 +18,16 @@ class BottomNavigation extends HookWidget {
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.black87,
+          showSelectedLabels: false,
+          showUnselectedLabels: false,
           selectedItemColor: Colors.teal,
           currentIndex: type.index,
-          items: TabType.values.map((type) => createTab(ctx, type)).toList(),
+          items: TabType.values
+              .map((type) => BottomNavigationBarItem(
+                    icon: type.tabItem,
+                    label: '',
+                  ))
+              .toList(),
           onTap: (value) {
             final selectedTab = TabType.values[value];
             if (selectedTab == tabType.value) {
@@ -50,44 +43,44 @@ class BottomNavigation extends HookWidget {
     );
   }
 }
-
-class TabIcon extends StatelessWidget {
-  const TabIcon({
-    required this.type,
-    required this.isSelected,
-  });
-
-  final TabType type;
-  final bool isSelected;
-
-  @override
-  Widget build(BuildContext context) {
-    return isSelected ? _SelectedIcon(type) : _NormalIcon(type);
-  }
-}
-
-class _NormalIcon extends StatelessWidget {
-  const _NormalIcon(this.type);
-
-  final TabType type;
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      type.iconData,
-    );
-  }
-}
-
-class _SelectedIcon extends StatelessWidget {
-  const _SelectedIcon(this.type);
-
-  final TabType type;
-
-  @override
-  Widget build(BuildContext context) {
-    return Icon(
-      type.iconData,
-    );
-  }
-}
+//
+// class TabIcon extends StatelessWidget {
+//   const TabIcon({
+//     required this.type,
+//     required this.isSelected,
+//   });
+//
+//   final TabType type;
+//   final bool isSelected;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return isSelected ? _SelectedIcon(type) : _NormalIcon(type);
+//   }
+// }
+//
+// class _NormalIcon extends StatelessWidget {
+//   const _NormalIcon(this.type);
+//
+//   final TabType type;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Icon(
+//       type.iconData,
+//     );
+//   }
+// }
+//
+// class _SelectedIcon extends StatelessWidget {
+//   const _SelectedIcon(this.type);
+//
+//   final TabType type;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Icon(
+//       type.iconData,
+//     );
+//   }
+// }

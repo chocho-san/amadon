@@ -1,7 +1,7 @@
 import 'package:amadon/model/model.dart';
 import 'package:amadon/page_type.dart';
 import 'package:amadon/pages/items_page/tile/item_tile.dart';
-import 'package:amadon/widgets/common_app_bar.dart';
+import 'package:amadon/pages/app_bar/common_app_bar.dart';
 import 'package:amadon/widgets/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
